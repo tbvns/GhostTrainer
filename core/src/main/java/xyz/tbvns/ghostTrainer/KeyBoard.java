@@ -39,8 +39,7 @@ public class KeyBoard implements NativeKeyListener {
             Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
             Ray ray = Main.camera.getPickRay((float) size.width / 2, (float) size.height / 2);
             Main.models.forEach(m -> {
-                boolean hit = Intersector.intersectRaySphere(ray, m.transform.getTranslation(new Vector3()), 0.5f, new Vector3());
-                System.out.println(hit);
+                boolean hit = Intersector.intersectRaySphere(ray, m.transform.getTranslation(new Vector3()), Main.size / 2, new Vector3());
                 if (hit) {
                     toRemove.add(m);
                     lhit.set(true);

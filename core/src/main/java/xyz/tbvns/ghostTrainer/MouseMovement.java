@@ -13,9 +13,6 @@ public class MouseMovement implements NativeMouseMotionListener {
     public static int OldMousePosX = 0;
     public static int OldMousePosY = 0;
 
-    public static float PosX = 0;
-    public static float PosY = 0;
-
     public static float fixFactor = 13.7f;
     public static float sensitivity = 1f;
     @Override
@@ -48,9 +45,6 @@ public class MouseMovement implements NativeMouseMotionListener {
         camera.direction.rotate(camera.up, -MouseMoveX);
         tmp.set(camera.direction).crs(camera.up).nor();
         camera.direction.rotate(tmp, -MouseMoveY);
-
-        PosX = MouseMoveX;
-        PosY = MouseMoveY;
     }
 
     @Override
@@ -83,9 +77,6 @@ public class MouseMovement implements NativeMouseMotionListener {
         camera.direction.rotate(camera.up, -MouseMoveX);
         tmp.set(camera.direction).crs(camera.up).nor();
         camera.direction.rotate(tmp, -MouseMoveY);
-
-        PosX = MouseMoveX;
-        PosY = MouseMoveY;
     }
 
     public static class createRunnable implements Runnable {

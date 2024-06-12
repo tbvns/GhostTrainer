@@ -5,9 +5,10 @@ import xyz.tbvns.ghostTrainer.MouseMovement;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class Launcher {
-    public static void open() throws InterruptedException {
+    public static void open() throws InterruptedException, IOException {
         JFrame frame = new JFrame("Ghost Trainer launcher");
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(9, 1));
@@ -57,8 +58,11 @@ public class Launcher {
         panel.add(color);
         panel.add(launch);
 
+        Utils.setIcon(frame);
+
         frame.add(panel);
         frame.setVisible(true);
+        Utils.center(frame);
 
         while (frame.isVisible()) {
             Thread.sleep(100);
