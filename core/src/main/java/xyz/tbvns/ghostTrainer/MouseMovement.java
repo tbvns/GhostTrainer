@@ -15,6 +15,7 @@ public class MouseMovement implements NativeMouseMotionListener {
 
     public static float fixFactor = 13.7f;
     public static float sensitivity = 1f;
+
     @Override
     public void nativeMouseMoved(NativeMouseEvent nativeMouseEvent) {
         float MouseMoveX = nativeMouseEvent.getX() - OldMousePosX;
@@ -24,21 +25,21 @@ public class MouseMovement implements NativeMouseMotionListener {
         OldMousePosY = nativeMouseEvent.getY();
         Camera camera = Main.camera;
 
-        MouseMoveX = MouseMoveX / fixFactor;
-        MouseMoveY = MouseMoveY / fixFactor;
+        MouseMoveX = (MouseMoveX / fixFactor) * sensitivity;
+        MouseMoveY = (MouseMoveY / fixFactor) * sensitivity;
 
         if (nativeMouseEvent.getX() < 0) {
-            MouseMoveX = (float) nativeMouseEvent.getX() / fixFactor * sensitivity;
+            MouseMoveX = (nativeMouseEvent.getX() / fixFactor) * sensitivity;
         } else
         if (nativeMouseEvent.getX() > Toolkit.getDefaultToolkit().getScreenSize().width) {
-            MouseMoveX = ((nativeMouseEvent.getX() - Toolkit.getDefaultToolkit().getScreenSize().width)  / fixFactor * sensitivity);
+            MouseMoveX = (((nativeMouseEvent.getX() - Toolkit.getDefaultToolkit().getScreenSize().width)  / fixFactor) * sensitivity);
         }
 
         if (nativeMouseEvent.getY() < 0) {
-            MouseMoveY = (float) nativeMouseEvent.getY() / fixFactor * sensitivity;
+            MouseMoveY = (nativeMouseEvent.getY() / fixFactor) * sensitivity;
         } else
         if (nativeMouseEvent.getY() > Toolkit.getDefaultToolkit().getScreenSize().height) {
-            MouseMoveY =((nativeMouseEvent.getY() - Toolkit.getDefaultToolkit().getScreenSize().height)  / fixFactor * sensitivity) ;
+            MouseMoveY = (((nativeMouseEvent.getY() - Toolkit.getDefaultToolkit().getScreenSize().height)  / fixFactor) * sensitivity);
         }
 
         Vector3 tmp = new Vector3();

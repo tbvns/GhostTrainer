@@ -5,9 +5,10 @@ import xyz.tbvns.ghostTrainer.MouseMovement;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class TargetSettings {
-    public static void open() {
+    public static void open() throws IOException {
         JFrame frame = new JFrame("Targets settings");
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(5, 1));
@@ -40,6 +41,7 @@ public class TargetSettings {
         panel.add(save);
         frame.add(panel);
 
+        Utils.setIcon(frame);
         frame.setVisible(true);
     }
 }

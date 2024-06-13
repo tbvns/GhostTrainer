@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
+import org.jnativehook.GlobalScreen;
 import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseInputListener;
 
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class MouseClickListener implements NativeMouseInputListener {
+public class MouseClick implements NativeMouseInputListener {
     @Override
     public void nativeMouseClicked(NativeMouseEvent nativeMouseEvent) {
         List<ModelInstance> toRemove = new ArrayList<>();
@@ -63,4 +64,18 @@ public class MouseClickListener implements NativeMouseInputListener {
     public void nativeMouseDragged(NativeMouseEvent nativeMouseEvent) {
 
     }
+
+    public static class createRunnable implements Runnable {
+
+        @Override
+        public void run() {
+            GlobalScreen.addNativeMouseMotionListener(new MouseClick());
+        }
+    }
+
+    public static void create() {
+        Thread thread = new Thread(new MouseClick.createRunnable());
+        thread.start();
+    }
+
 }

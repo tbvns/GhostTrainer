@@ -25,11 +25,19 @@ public class Launcher {
         JButton launch = new JButton("Launch");
 
         targetSettings.addActionListener(a -> {
-            TargetSettings.open();
+            try {
+                TargetSettings.open();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         color.addActionListener(a -> {
-            ColorChooser.open();
+            try {
+                ColorChooser.open();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
 
@@ -39,6 +47,7 @@ public class Launcher {
                 Main.fov = Integer.parseInt(fov.getText());
                 Main.color = new Color(Main.color.getRed(), Main.color.getGreen(), Main.color.getBlue(), Integer.parseInt(transparency.getText()));
                 frame.dispose();
+                System.out.printf(String.valueOf(MouseMovement.sensitivity));
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(frame, "Could not get number " + e.getMessage().toLowerCase(), "Error: invalid value", JOptionPane.ERROR_MESSAGE);
             }
@@ -67,5 +76,14 @@ public class Launcher {
         while (frame.isVisible()) {
             Thread.sleep(100);
         }
+
+        JFrame newFrame = new JFrame("Ghost trainer");
+        newFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        newFrame.add(new JLabel("   Ghost trainer is running !"));
+        Utils.center(newFrame);
+        Utils.setIcon(newFrame);
+        newFrame.setVisible(true);
+        newFrame.setSize(180, 80);
+
     }
 }
