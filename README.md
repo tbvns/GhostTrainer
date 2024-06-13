@@ -3,16 +3,27 @@
 </p>
 
 # Ghost trainer
+> Simple aim trainer that work in game !
 
-> Simple aim trainer that work in game
+> [!Note]
+> Riot can ban users for using external app. <br/>
+> This will not give you any avantages, and should be OK with riot's policy.
+
 ## Supported games:
-- Valorant
-- More soon (maybe)
+Ghost Trainer curently only support Valorant.
 
-## Keybinds:
+> [!Note]
+> If people like this project, I may add more game to Ghost Trainer.
+
+> [!Tip]
+> Other game may work, but won't be supported.
+
+## Key binds:
 - To open the trainer, click quickly two time on escape
 - to close it, click on time on escape
+> [!Note]
+> Custom keybind are not implemented yet, if enought people care about this project, I may update it.
 
 ## Other thing:
-- You can change the app's settings in the laucher
+- You can change the app's settings in the launcher
 - you can close the app by closing the small window saying that the trainer is running
