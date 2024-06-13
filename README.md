@@ -1,5 +1,5 @@
-
-# Ghost trainer![gt](https://github.com/tbvns/GhostTrainer/assets/69420062/f5d820bb-8116-46f0-b553-8712275567d0)
+![gt](https://github.com/tbvns/GhostTrainer/assets/69420062/f5d820bb-8116-46f0-b553-8712275567d0)
+# Ghost trainer
 
 > Simple aim trainer that work in game
 ## Supported games:
