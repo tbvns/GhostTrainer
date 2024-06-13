@@ -34,4 +34,4 @@ Ghost Trainer curently only support Valorant.
 You can download Ghost trainer [here](https://github.com/tbvns/GhostTrainer/releases/latest).
 
 ## Communication:
-If you need help or want to request changes, [open an issue](https://github.com/tbvns/GhostTrainer/issues/new) or join the [Discord](https://discord.gg/Vh8QAMq6BY).
+If you need help or want to request changes, [open an issue](https://github.com/tbvns/GhostTrainer/issues/new) or join the [discord](https://discord.gg/Vh8QAMq6BY).
