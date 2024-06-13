@@ -17,5 +17,6 @@ public class Utils {
     public static void setIcon(JFrame frame) throws IOException {
         Image image = ImageIO.read(Main.class.getResourceAsStream("/GhostTrainer.png"));
         frame.setIconImage(image);
+
     }
 }

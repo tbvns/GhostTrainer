@@ -7,13 +7,13 @@
 
 > [!Warning]
 > Riot can ban users for using external app. <br/>
-> This app uses a window that's the size of youre screen, this window is not clickable and is allway on top of everything. <br/>
-> The mouse and keyboard inputs is aquired throught the native window api, so nothing sketchy here. <br/>
-> This will not give you any avantages, and should be OK with riot's policy. <br/>
+> This app uses a window that's the size of your screen, this window is not clickable and is always on top of everything. <br/>
+> The mouse and keyboard inputs is acquired through the native window api, so nothing sketchy here. <br/>
+> This will not give you any advantages, and should be OK with riot's policy. <br/>
 > [Tweet](https://x.com/VALORANT/status/1539728676815642624) | [Article](https://www.riotgames.com/en/DevRel/valorant-api-launch?linkId=100000132045457)
 
 ## Supported games:
-Ghost Trainer curently only support Valorant.
+Ghost Trainer currently only support Valorant.
 
 > [!Note]
 > If people like this project, I may add more game to Ghost Trainer.
@@ -25,7 +25,7 @@ Ghost Trainer curently only support Valorant.
 - To open the trainer, click quickly two time on escape
 - to close it, click on time on escape
 > [!Note]
-> Custom keybind are not implemented yet, if enought people care about this project, I may update it.
+> Custom keybinding are not implemented yet, if enough people care about this project, I may update it.
 
 ## Other thing:
 - You can change the app's settings in the launcher
