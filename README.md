@@ -3,7 +3,7 @@
 </p>
 
 # Ghost trainer
-> Simple aim trainer that work in game !
+### Simple aim trainer that work in game !
 
 > [!Warning]
 > Riot can ban users for using external app. <br/>
