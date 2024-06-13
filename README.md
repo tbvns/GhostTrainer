@@ -27,3 +27,6 @@ Ghost Trainer curently only support Valorant.
 ## Other thing:
 - You can change the app's settings in the launcher
 - you can close the app by closing the small window saying that the trainer is running
+
+## Download:
+You can download Ghost trainer [here](https://github.com/tbvns/GhostTrainer/releases/latest).
