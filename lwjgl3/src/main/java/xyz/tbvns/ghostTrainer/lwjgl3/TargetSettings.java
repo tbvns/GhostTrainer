@@ -17,8 +17,8 @@ public class TargetSettings {
         frame.setResizable(false);
         Utils.center(frame);
 
-        JTextField targetCount = new JTextField("10");
-        JTextField targetSize = new JTextField("1");
+        JTextField targetCount = new JTextField(String.valueOf(Main.ballCount));
+        JTextField targetSize = new JTextField(String.valueOf(Main.size));
         JButton save = new JButton("Save");
 
         save.addActionListener(a -> {

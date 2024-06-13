@@ -9,6 +9,8 @@ import java.io.IOException;
 
 public class Launcher {
     public static void open() throws InterruptedException, IOException {
+        Settings.load();
+
         JFrame frame = new JFrame("Ghost Trainer launcher");
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(9, 1));
@@ -17,11 +19,11 @@ public class Launcher {
         frame.setSize(180, 230);
         frame.setResizable(false);
 
-        JTextField sensitivity = new JTextField("1");
-        JTextField fov = new JTextField("75");
+        JTextField sensitivity = new JTextField(String.valueOf(MouseMovement.sensitivity));
+        JTextField fov = new JTextField(String.valueOf(Main.fov));
         JButton color = new JButton("Select color");
         JButton targetSettings = new JButton("Spawn settings");
-        JTextField transparency = new JTextField("255");
+        JTextField transparency = new JTextField(String.valueOf(Main.color.getAlpha()));
         JButton launch = new JButton("Launch");
 
         targetSettings.addActionListener(a -> {
@@ -54,6 +56,8 @@ public class Launcher {
             catch (Exception e) {
                 JOptionPane.showMessageDialog(frame, "Something went wrong:\n" + e.getMessage().toLowerCase(), "Unhandled error:", JOptionPane.ERROR_MESSAGE);
             }
+
+            Settings.save();
         });
         launch.setBackground(new Color(255, 45, 45));
 

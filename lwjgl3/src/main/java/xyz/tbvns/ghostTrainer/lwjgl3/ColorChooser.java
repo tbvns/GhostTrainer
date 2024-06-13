@@ -13,7 +13,7 @@ public class ColorChooser {
         frame.setResizable(false);
         frame.setSize(620, 400);
         JPanel panel = new JPanel();
-        JColorChooser chooser = new JColorChooser(Color.cyan);
+        JColorChooser chooser = new JColorChooser(Main.color);
         chooser.setBounds(0, 0, 620, 380);
 
         JButton select = new JButton("Select");
