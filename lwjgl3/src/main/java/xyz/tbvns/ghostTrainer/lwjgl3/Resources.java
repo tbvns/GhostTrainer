@@ -23,9 +23,10 @@ public class Resources {
     }
 
     public static void start() throws IOException, URISyntaxException {
-        System.out.println("Java \"-Djava.library.path=" + Resources.file.getAbsolutePath() + "\" -jar " + Main.class.getProtectionDomain().getCodeSource().getLocation().getPath() + " true");
+        System.out.println("java \"-Djava.library.path=" + Resources.file.getAbsolutePath() + "\" -jar " + Main.class.getProtectionDomain().getCodeSource().getLocation().getPath() + " true");
         File file = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-        Process process = Runtime.getRuntime().exec("Java \"-Djava.library.path=" + Resources.file.getAbsolutePath() + "\" -jar " + file.getPath()  + " true");
+        //make this use something that is not deprecated
+        Process process = Runtime.getRuntime().exec("java \"-Djava.library.path=" + Resources.file.getAbsolutePath().replaceAll("\\.", "\\") + "\" -jar " + file.getPath()  + " true");
         while (process.isAlive()) {
             System.out.print(new String(process.getInputStream().readNBytes(process.getInputStream().available())));
             System.err.print(new String(process.getErrorStream().readNBytes(process.getErrorStream().available())));
