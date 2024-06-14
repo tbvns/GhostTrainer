@@ -15,7 +15,7 @@
 > [!Warning]
 > Riot can ban users for using external app. <br/>
 > This app uses a window that's the size of your screen, this window is not clickable and is always on top of everything. <br/>
-> The mouse and keyboard inputs is acquired through the native window api, so nothing sketchy here. <br/>
+> The mouse and keyboard inputs is acquired through the native Windows api, so nothing sketchy here. (vanguard should be fine with it)<br/>
 > This will not give you any advantages, and should be OK with riot's policy. <br/>
 > [Tweet](https://x.com/VALORANT/status/1539728676815642624) | [Article](https://www.riotgames.com/en/DevRel/valorant-api-launch?linkId=100000132045457)
 
