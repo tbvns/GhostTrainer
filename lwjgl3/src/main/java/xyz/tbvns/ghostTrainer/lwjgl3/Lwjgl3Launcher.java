@@ -4,24 +4,28 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Window;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3WindowAdapter;
-import com.badlogic.gdx.math.Intersector;
 import org.lwjgl.glfw.GLFW;
 import xyz.tbvns.ghostTrainer.Main;
-import xyz.tbvns.ghostTrainer.MouseMovement;
 
-import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.DefaultEditorKit;
 import java.awt.*;
-import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
+import java.net.URISyntaxException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
-    public static void main(String[] args) throws InterruptedException, IOException {
+    public static void main(String[] args) throws InterruptedException, IOException, URISyntaxException {
+        if (args.length == 0) {
+            Resources.load();
+            Resources.start();
+            return;
+        }
 
+        Settings.load();
         Launcher.open();
 
         //LibGDX stuff
