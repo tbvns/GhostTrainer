@@ -1,6 +1,13 @@
 <p align="center">
   <img height="200" src="https://github.com/tbvns/GhostTrainer/assets/69420062/f5d820bb-8116-46f0-b553-8712275567d0">
+  <br/>
+  <img src="https://discord.com/api/guilds/721746963938148494/widget.png?style=banner2" alt="Discord Banner 2"/>
 </p>
+<br/>
+
+
+
+
 
 # Ghost trainer
 ### Simple aim trainer that work in game !
