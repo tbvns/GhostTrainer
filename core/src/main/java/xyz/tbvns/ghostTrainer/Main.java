@@ -2,8 +2,8 @@ package xyz.tbvns.ghostTrainer;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,9 +11,6 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g3d.*;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
-import net.java.games.input.Controller;
-import net.java.games.input.ControllerEnvironment;
-import net.java.games.input.Mouse;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 
@@ -32,7 +29,7 @@ public class Main extends ApplicationAdapter {
     ModelInstance sphereInstance;
     ModelCache cache;
     public static boolean reset = false;
-    public static boolean show = false;
+    public static boolean show = true;
     public static boolean updateCache = false;
     public static Model sphere;
     public static List<ModelInstance> models = new ArrayList<>();
@@ -49,109 +46,74 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create() {
-        Controller[] ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
-        float x;
-        float y;
-        while (true) {
-            for(int i =0;i<ca.length;i++) {
-                /* Get the name of the controller */
-                Controller controller = ca[i];
-                if (controller.getType() == Controller.Type.MOUSE) {
-                    controller.poll();
-                    for (int i1 = 0; i1 < controller.getComponents().length; i1++) {
-                        //System.out.println(controller.getName());
-                        //System.out.println(controller.getComponents()[i1].getName());
-                        //System.out.println(i1);
-                        //System.out.println(controller.getComponents()[i1].getPollData());
-                        //System.out.println("");
-
-                        x = controller.getComponents()[0].getPollData();
-                        y = controller.getComponents()[1].getPollData();
-
-                        if (x != 0 && y != 0) {
-                            System.out.println(controller.getName());
-                            System.out.println(x + "|" + y);
-                        }
-                    }
-                    controller.poll();
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-        }
-
 
         //2D
-//        spriteBatch = new SpriteBatch();
-//        crossair = new Sprite(new Texture(Gdx.files.internal("GhostTrainerCrossair.png")));
-//        ghost = new Sprite(new Texture(Gdx.files.internal("GhostTrainerGhost.png")));
-//        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-//        crossair.setBounds(0, 0, crossair.getTexture().getWidth() / 2, crossair.getTexture().getHeight() / 2);
-//        crossair.setOrigin(crossair.getWidth() / 2, crossair.getHeight() / 2);
-//
-//        ghost.setBounds(0, 0, ghost.getTexture().getWidth() / 2, ghost.getTexture().getHeight() / 2);
-//        ghost.setOrigin(ghost.getWidth() / 2, ghost.getHeight() / 2);
-//        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Aero Matics Bold.ttf"));
-//        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-//        parameter.size = 40; // font size
-//        titleFont = generator.generateFont(parameter);
-//        generator = new FreeTypeFontGenerator(Gdx.files.internal("Aero Matics Light.ttf"));
-//        parameter.size = 13;
-//        versionFont = generator.generateFont(parameter);
-//
-//
-//        //3D
-//        cache = new ModelCache();
-//
-//        Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
-//        logger.setLevel(Level.OFF);
-//
-//        batch = new ModelBatch();
-//
-//        ModelBuilder modelBuilder = new ModelBuilder();
-//
-//        sphere = modelBuilder.createSphere(size, size, size, 20, 20,
-//            new Material(ColorAttribute.createDiffuse(new Color((float) color.getRed() / 255, (float) color.getGreen() / 255, (float) color.getBlue() / 255, (float) color.getAlpha() / 255))),
-//            VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal
-//        );
-//
-//        cache.begin(camera);
-//        for (int i = 0; i <= ballCount; i++) {
-//            Random random = new Random();
-//            int x = random.nextInt(-10, 10);
-//            int y = random.nextInt(-5, 5);
-//            int z = random.nextInt(20, 40);
-//            ModelInstance instance = new ModelInstance(sphere, x, y, z);
-//            cache.add(instance);
-//            models.add(instance);
-//        }
-//        cache.end();
-//
-//        camera = new PerspectiveCamera(fov,
-//            Gdx.graphics.getWidth(),
-//            Gdx.graphics.getHeight());
-//
-//        camera.position.set(0f,0f,3f);
-//        camera.lookAt(0f,0f,0f);
-//        camera.projection.set(camera.projection);
-//
-//        camera.near = 0.1f;
-//        camera.far = 300.0f;
-//
-//        environment = new Environment();
-//        environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 1f, 1f, 1f, 1f));
-//
-//        try {
-//            GlobalScreen.registerNativeHook();
-//        } catch (NativeHookException e) {
-//            throw new RuntimeException(e);
-//        }
-//        MouseMovement.create();
-//        KeyBoard.create();
-//        MouseClick.create();
+        spriteBatch = new SpriteBatch();
+        crossair = new Sprite(new Texture(Gdx.files.internal("GhostTrainerCrossair.png")));
+        ghost = new Sprite(new Texture(Gdx.files.internal("GhostTrainerGhost.png")));
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        crossair.setBounds(0, 0, crossair.getTexture().getWidth() / 2, crossair.getTexture().getHeight() / 2);
+        crossair.setOrigin(crossair.getWidth() / 2, crossair.getHeight() / 2);
+
+        ghost.setBounds(0, 0, ghost.getTexture().getWidth() / 2, ghost.getTexture().getHeight() / 2);
+        ghost.setOrigin(ghost.getWidth() / 2, ghost.getHeight() / 2);
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Aero Matics Bold.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 40; // font size
+        titleFont = generator.generateFont(parameter);
+        generator = new FreeTypeFontGenerator(Gdx.files.internal("Aero Matics Light.ttf"));
+        parameter.size = 13;
+        versionFont = generator.generateFont(parameter);
+
+
+        //3D
+        cache = new ModelCache();
+
+        Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
+        logger.setLevel(Level.OFF);
+
+        batch = new ModelBatch();
+
+        ModelBuilder modelBuilder = new ModelBuilder();
+
+        sphere = modelBuilder.createSphere(size, size, size, 20, 20,
+            new Material(ColorAttribute.createDiffuse(new Color((float) color.getRed() / 255, (float) color.getGreen() / 255, (float) color.getBlue() / 255, (float) color.getAlpha() / 255))),
+            VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal
+        );
+
+        cache.begin(camera);
+        for (int i = 0; i <= ballCount; i++) {
+            Random random = new Random();
+            int x = random.nextInt(-10, 10);
+            int y = random.nextInt(-5, 5);
+            int z = random.nextInt(20, 40);
+            ModelInstance instance = new ModelInstance(sphere, x, y, z);
+            cache.add(instance);
+            models.add(instance);
+        }
+        cache.end();
+
+        camera = new PerspectiveCamera(fov,
+            Gdx.graphics.getWidth(),
+            Gdx.graphics.getHeight());
+
+        camera.position.set(0f,0f,3f);
+        camera.lookAt(0f,0f,0f);
+        camera.projection.set(camera.projection);
+
+        camera.near = 0.1f;
+        camera.far = 300.0f;
+
+        environment = new Environment();
+        environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 1f, 1f, 1f, 1f));
+
+        try {
+            GlobalScreen.registerNativeHook();
+        } catch (NativeHookException e) {
+            throw new RuntimeException(e);
+        }
+        KeyBoard.create();
+        MouseClick.create();
 
     }
 
@@ -161,7 +123,7 @@ public class Main extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(Gdx.gl20.GL_COLOR_BUFFER_BIT | Gdx.gl20.GL_DEPTH_BUFFER_BIT);
 
-        camera.update();
+        MouseController.updateCamera();
 
         if (reset) {
             camera.direction.set(0, -30, 360);
@@ -178,8 +140,6 @@ public class Main extends ApplicationAdapter {
                 cache.add(instance);
                 models.add(instance);
             }
-            MouseMovement.OldMousePosX = Toolkit.getDefaultToolkit().getScreenSize().width / 2;
-            MouseMovement.OldMousePosY = Toolkit.getDefaultToolkit().getScreenSize().height / 2;
 
             cache.end();
             reset = false;

@@ -3,7 +3,6 @@ package xyz.tbvns.ghostTrainer.lwjgl3;
 import xyz.tbvns.ghostTrainer.Main;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 
 public class ColorChooser {
