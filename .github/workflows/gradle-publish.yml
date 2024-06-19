@@ -44,6 +44,6 @@ jobs:
       with:
         # Artifact name
         name: "GhostTrainer-DEV-BUILD.jar"
-        path: "/lwjgl3/build/lib"
+        path: "/lib"
 
           
