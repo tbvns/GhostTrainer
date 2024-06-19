@@ -1,7 +1,7 @@
 package xyz.tbvns.ghostTrainer.lwjgl3;
 
 import xyz.tbvns.ghostTrainer.Main;
-import xyz.tbvns.ghostTrainer.MouseController;
+import xyz.tbvns.ghostTrainer.MouseMovement;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,12 +19,11 @@ public class Launcher {
         frame.setSize(180, 230);
         frame.setResizable(false);
 
-        JTextField sensitivity = new JTextField("null");
+        JTextField sensitivity = new JTextField(String.valueOf(MouseMovement.sensitivity));
         JTextField fov = new JTextField(String.valueOf(Main.fov));
         JButton color = new JButton("Select color");
         JButton targetSettings = new JButton("Spawn settings");
-        JComboBox mouses = MouseController.createComboBox();
-
+        JTextField transparency = new JTextField(String.valueOf(Main.color.getAlpha()));
         JButton launch = new JButton("Launch");
 
         targetSettings.addActionListener(a -> {
@@ -46,8 +45,9 @@ public class Launcher {
 
         launch.addActionListener(a -> {
             try {
+                MouseMovement.sensitivity = Float.parseFloat(sensitivity.getText());
                 Main.fov = Integer.parseInt(fov.getText());
-                Main.color = new Color(Main.color.getRed(), Main.color.getGreen(), Main.color.getBlue(), 255);
+                Main.color = new Color(Main.color.getRed(), Main.color.getGreen(), Main.color.getBlue(), Integer.parseInt(transparency.getText()));
                 frame.dispose();
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(frame, "Could not get number " + e.getMessage().toLowerCase(), "Error: invalid value", JOptionPane.ERROR_MESSAGE);
@@ -64,8 +64,8 @@ public class Launcher {
         panel.add(sensitivity);
         panel.add(new JLabel("Field of view:"));
         panel.add(fov);
-        panel.add(new JLabel("Mouse:"));
-        panel.add(mouses);
+        panel.add(new JLabel("Targets transparency:"));
+        panel.add(transparency);
         panel.add(targetSettings);
         panel.add(color);
         panel.add(launch);
@@ -85,7 +85,7 @@ public class Launcher {
         newFrame.add(new JLabel("   Ghost trainer is running !"));
         Utils.center(newFrame);
         Utils.setIcon(newFrame);
-        //newFrame.setVisible(true);
+        newFrame.setVisible(true);
         newFrame.setSize(180, 80);
 
     }

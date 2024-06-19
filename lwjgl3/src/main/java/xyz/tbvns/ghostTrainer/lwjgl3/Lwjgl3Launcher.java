@@ -8,8 +8,13 @@ import org.lwjgl.glfw.GLFW;
 import xyz.tbvns.ghostTrainer.Main;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
