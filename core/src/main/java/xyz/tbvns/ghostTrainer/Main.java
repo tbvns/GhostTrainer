@@ -2,8 +2,8 @@ package xyz.tbvns.ghostTrainer;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -29,7 +29,7 @@ public class Main extends ApplicationAdapter {
     ModelInstance sphereInstance;
     ModelCache cache;
     public static boolean reset = false;
-    public static boolean show = true;
+    public static boolean show = false;
     public static boolean updateCache = false;
     public static Model sphere;
     public static List<ModelInstance> models = new ArrayList<>();
@@ -46,7 +46,6 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create() {
-
         //2D
         spriteBatch = new SpriteBatch();
         crossair = new Sprite(new Texture(Gdx.files.internal("GhostTrainerCrossair.png")));
@@ -112,6 +111,7 @@ public class Main extends ApplicationAdapter {
         } catch (NativeHookException e) {
             throw new RuntimeException(e);
         }
+        MouseMovement.create();
         KeyBoard.create();
         MouseClick.create();
 
@@ -123,7 +123,7 @@ public class Main extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(Gdx.gl20.GL_COLOR_BUFFER_BIT | Gdx.gl20.GL_DEPTH_BUFFER_BIT);
 
-        MouseController.updateCamera();
+        camera.update();
 
         if (reset) {
             camera.direction.set(0, -30, 360);
@@ -140,6 +140,8 @@ public class Main extends ApplicationAdapter {
                 cache.add(instance);
                 models.add(instance);
             }
+            MouseMovement.OldMousePosX = Toolkit.getDefaultToolkit().getScreenSize().width / 2;
+            MouseMovement.OldMousePosY = Toolkit.getDefaultToolkit().getScreenSize().height / 2;
 
             cache.end();
             reset = false;
