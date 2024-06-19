@@ -17,6 +17,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class MouseClick implements NativeMouseInputListener {
     @Override
     public void nativeMouseClicked(NativeMouseEvent nativeMouseEvent) {
+    }
+
+    @Override
+    public void nativeMousePressed(NativeMouseEvent nativeMouseEvent) {
         List<ModelInstance> toRemove = new ArrayList<>();
 
         AtomicBoolean lhit = new AtomicBoolean(false);
@@ -46,11 +50,6 @@ public class MouseClick implements NativeMouseInputListener {
     }
 
     @Override
-    public void nativeMousePressed(NativeMouseEvent nativeMouseEvent) {
-
-    }
-
-    @Override
     public void nativeMouseReleased(NativeMouseEvent nativeMouseEvent) {
 
     }
@@ -69,7 +68,7 @@ public class MouseClick implements NativeMouseInputListener {
 
         @Override
         public void run() {
-            GlobalScreen.addNativeMouseMotionListener(new MouseClick());
+            GlobalScreen.addNativeMouseListener(new MouseClick());
         }
     }
 

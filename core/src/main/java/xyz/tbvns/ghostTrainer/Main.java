@@ -114,7 +114,6 @@ public class Main extends ApplicationAdapter {
         MouseMovement.create();
         KeyBoard.create();
         MouseClick.create();
-
     }
 
     @Override
