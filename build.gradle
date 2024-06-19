@@ -53,7 +53,7 @@ configure(subprojects) {
 }
 
 subprojects {
-  version = '1.0.0'
+  version = 'DEV-BUILD'
   ext.appName = 'GhostTrainer'
   repositories {
     mavenCentral()
