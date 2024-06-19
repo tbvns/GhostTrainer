@@ -57,21 +57,21 @@ public class MouseMovement implements NativeMouseMotionListener {
         OldMousePosY = nativeMouseEvent.getY();
         Camera camera = Main.camera;
 
-        MouseMoveX = (MouseMoveX / fixFactor) * sensitivity;
-        MouseMoveY = (MouseMoveY / fixFactor) * sensitivity;
+        MouseMoveX = MouseMoveX / fixFactor;
+        MouseMoveY = MouseMoveY / fixFactor;
 
         if (nativeMouseEvent.getX() < 0) {
-            MouseMoveX = (nativeMouseEvent.getX() / fixFactor) * sensitivity;
+            MouseMoveX = (float) nativeMouseEvent.getX() / fixFactor;
         } else
         if (nativeMouseEvent.getX() > Toolkit.getDefaultToolkit().getScreenSize().width) {
-            MouseMoveX = (((nativeMouseEvent.getX() - Toolkit.getDefaultToolkit().getScreenSize().width)  / fixFactor) * sensitivity);
+            MouseMoveX = ((nativeMouseEvent.getX() - Toolkit.getDefaultToolkit().getScreenSize().width)  / fixFactor);
         }
 
         if (nativeMouseEvent.getY() < 0) {
-            MouseMoveY = (nativeMouseEvent.getY() / fixFactor) * sensitivity;
+            MouseMoveY = (float) nativeMouseEvent.getY() / fixFactor;
         } else
         if (nativeMouseEvent.getY() > Toolkit.getDefaultToolkit().getScreenSize().height) {
-            MouseMoveY = (((nativeMouseEvent.getY() - Toolkit.getDefaultToolkit().getScreenSize().height)  / fixFactor) * sensitivity);
+            MouseMoveY =((nativeMouseEvent.getY() - Toolkit.getDefaultToolkit().getScreenSize().height)  / fixFactor) ;
         }
 
         Vector3 tmp = new Vector3();

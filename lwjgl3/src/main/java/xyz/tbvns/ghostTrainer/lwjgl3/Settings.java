@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 public class Settings {
-    static final String filePath = System.getProperty("user.home") + "/GhostTrainer/GhostTrainerSave.txt";
+    static final String filePath = System.getProperty("user.home") + "/GhostTrainerSave.txt";
     public static void save() {
         String toWrite = MouseMovement.sensitivity + "\n" +
             Main.fov + "\n" +

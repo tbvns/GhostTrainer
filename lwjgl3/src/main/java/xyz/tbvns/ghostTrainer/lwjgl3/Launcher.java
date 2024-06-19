@@ -49,6 +49,7 @@ public class Launcher {
                 Main.fov = Integer.parseInt(fov.getText());
                 Main.color = new Color(Main.color.getRed(), Main.color.getGreen(), Main.color.getBlue(), Integer.parseInt(transparency.getText()));
                 frame.dispose();
+                System.out.printf(String.valueOf(MouseMovement.sensitivity));
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(frame, "Could not get number " + e.getMessage().toLowerCase(), "Error: invalid value", JOptionPane.ERROR_MESSAGE);
             }
