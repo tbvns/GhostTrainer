@@ -7,11 +7,7 @@
 
 name: Gradle Package
 
-on:
-  release:
-    types: [created]
-  workflow_dispatch:
-
+on: push
 jobs:
   build:
 
@@ -37,13 +33,13 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew build --scan
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
       with:
         # Artifact name
-        name: "GhostTrainer-DEV-BUILD.jar"
-        path: "./lwjgl3/build/lib"
+        name: "GhostTrainer-DEV-BUILD-Compressed"
+        path: "./lwjgl3/build/lib/GhostTrainer-DEV-BUILD.jar"
 
           
