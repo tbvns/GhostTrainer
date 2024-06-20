@@ -11,7 +11,7 @@ public class ColorChooser {
         JFrame frame = new JFrame("Select a color");
         frame.setIconImage(null);
         frame.setResizable(false);
-        frame.setSize(620, 400);
+        frame.setSize(700, 430);
         JPanel panel = new JPanel();
         JColorChooser chooser = new JColorChooser(Main.color);
         chooser.setBounds(0, 0, 620, 380);

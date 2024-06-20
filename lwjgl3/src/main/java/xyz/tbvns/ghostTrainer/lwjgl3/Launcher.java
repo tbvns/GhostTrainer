@@ -1,5 +1,10 @@
 package xyz.tbvns.ghostTrainer.lwjgl3;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import xyz.tbvns.ghostTrainer.Main;
 import xyz.tbvns.ghostTrainer.MouseMovement;
 
@@ -9,6 +14,7 @@ import java.io.IOException;
 
 public class Launcher {
     public static void open() throws InterruptedException, IOException {
+        FlatMacDarkLaf.setup();
         Settings.load();
 
         JFrame frame = new JFrame("Ghost Trainer launcher");
@@ -16,7 +22,7 @@ public class Launcher {
         panel.setLayout(new GridLayout(9, 1));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(180, 230);
+        frame.setSize(180, 250);
         frame.setResizable(false);
 
         JTextField sensitivity = new JTextField(String.valueOf(MouseMovement.sensitivity));
