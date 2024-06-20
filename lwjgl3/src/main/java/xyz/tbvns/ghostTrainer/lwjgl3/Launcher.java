@@ -22,7 +22,7 @@ public class Launcher {
         panel.setLayout(new GridLayout(9, 1));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(180, 250);
+        frame.setSize(180, 265);
         frame.setResizable(false);
 
         JTextField sensitivity = new JTextField(String.valueOf(MouseMovement.sensitivity));

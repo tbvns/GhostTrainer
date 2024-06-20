@@ -13,7 +13,7 @@ public class TargetSettings {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(5, 1));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        frame.setSize(180, 160);
+        frame.setSize(180, 180);
         frame.setResizable(false);
         Utils.center(frame);
 
