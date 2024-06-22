@@ -24,9 +24,9 @@ import java.util.logging.Logger;
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends ApplicationAdapter {
     ModelBatch batch;
+    SpriteBatch menuBatch;
     static Camera camera;
     Environment environment;
-    ModelInstance sphereInstance;
     ModelCache cache;
     public static boolean reset = false;
     public static boolean show = false;
@@ -48,6 +48,7 @@ public class Main extends ApplicationAdapter {
     public void create() {
         //2D
         spriteBatch = new SpriteBatch();
+        menuBatch = new SpriteBatch();
         crossair = new Sprite(new Texture(Gdx.files.internal("GhostTrainerCrossair.png")));
         ghost = new Sprite(new Texture(Gdx.files.internal("GhostTrainerGhost.png")));
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -144,6 +145,12 @@ public class Main extends ApplicationAdapter {
 
             cache.end();
             reset = false;
+        }
+
+        if (Constant.inMenu) {
+            menuBatch.begin();
+            titleFont.draw(menuBatch, "Menu \\o/", 200, 200);
+            menuBatch.end();
         }
 
         if (show) {

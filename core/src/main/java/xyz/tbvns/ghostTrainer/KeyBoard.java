@@ -1,5 +1,6 @@
 package xyz.tbvns.ghostTrainer;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector3;
@@ -8,6 +9,7 @@ import org.jnativehook.GlobalScreen;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,14 @@ public class KeyBoard implements NativeKeyListener {
 
     @Override
     public void nativeKeyPressed(NativeKeyEvent nativeKeyEvent) {
+
+        System.out.println(nativeKeyEvent.getKeyCode());
+
+        if (nativeKeyEvent.getKeyCode() == 22) {
+            Constant.inMenu = !Constant.inMenu;
+        }
+
+
         if (nativeKeyEvent.getKeyCode() == 1) {
             if (Main.show) {
                 Main.show = false;
