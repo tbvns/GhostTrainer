@@ -2,6 +2,9 @@
   <img height="200" width="547" src="https://github.com/tbvns/GhostTrainer/assets/69420062/f5d820bb-8116-46f0-b553-8712275567d0">
   <br/>
   <img src="https://discord.com/api/guilds/721746963938148494/widget.png?style=shield" alt="Discord Shield"/>  
+  <img src="https://github.com/tbvns/ghosttrainer/actions/workflows/gradle-publish.yml/badge.svg" alt="Build badge"/>  
+  <img src="https://hits.dwyl.com/tbvns/ghosttrainer.svg" alt="Hits badge"/>
+  <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="Contribution badge"/>
 </p>
 <br/>
 
