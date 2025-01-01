@@ -1,7 +1,7 @@
 package xyz.tbvns.ghostTrainer.lwjgl3;
 
+import xyz.tbvns.ghostTrainer.Inputs.NativeMouseReader;
 import xyz.tbvns.ghostTrainer.Main;
-import xyz.tbvns.ghostTrainer.MouseMovement;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ import java.util.List;
 public class Settings {
     static final String filePath = System.getProperty("user.home") + "/GhostTrainerSave.txt";
     public static void save() {
-        String toWrite = MouseMovement.sensitivity + "\n" +
+        String toWrite = NativeMouseReader.sensitivity + "\n" +
             Main.fov + "\n" +
             Main.color.getRed() + "\n" +
             Main.color.getGreen() + "\n" +
@@ -34,7 +34,7 @@ public class Settings {
             File file = new File(filePath);
             if (file.exists()) {
                 List<String> settings = Files.readAllLines(Path.of(filePath));
-                MouseMovement.sensitivity = Float.parseFloat(settings.get(0));
+                NativeMouseReader.sensitivity = Float.parseFloat(settings.get(0));
                 Main.fov = Integer.parseInt(settings.get(1));
                 int red = Integer.parseInt(settings.get(2));
                 int green = Integer.parseInt(settings.get(3));

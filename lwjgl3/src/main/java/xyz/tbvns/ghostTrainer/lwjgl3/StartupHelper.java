@@ -144,7 +144,6 @@ public class StartupHelper {
                 while ((line = processOutput.readLine()) != null) {
                     System.out.println(line);
                 }
-
                 process.waitFor();
             }
         } catch (Exception e) {

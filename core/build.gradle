@@ -11,5 +11,6 @@ dependencies {
   api "com.badlogicgames.gdx:gdx-bullet:$gdxVersion"
   api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
   api "com.badlogicgames.gdx:gdx:$gdxVersion"
-  implementation 'com.1stleg:jnativehook:2.1.0'
+// https://mvnrepository.com/artifact/com.github.kwhat/jnativehook
+  implementation 'com.github.kwhat:jnativehook:2.2.2'
 }

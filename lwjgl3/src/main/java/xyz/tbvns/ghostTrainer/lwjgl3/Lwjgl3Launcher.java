@@ -1,19 +1,11 @@
 package xyz.tbvns.ghostTrainer.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.*;
-import com.badlogic.gdx.math.Intersector;
 import org.lwjgl.glfw.GLFW;
 import xyz.tbvns.ghostTrainer.Main;
-import xyz.tbvns.ghostTrainer.MouseMovement;
 
-import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.DefaultEditorKit;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.IOException;
-import java.text.ParseException;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {

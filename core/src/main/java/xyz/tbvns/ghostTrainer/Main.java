@@ -2,8 +2,8 @@ package xyz.tbvns.ghostTrainer;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,8 +11,12 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g3d.*;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
-import org.jnativehook.GlobalScreen;
-import org.jnativehook.NativeHookException;
+import com.github.kwhat.jnativehook.GlobalScreen;
+import com.github.kwhat.jnativehook.NativeHookException;
+import xyz.tbvns.ghostTrainer.Inputs.KeyBoard;
+import xyz.tbvns.ghostTrainer.Inputs.MouseClick;
+import xyz.tbvns.ghostTrainer.Inputs.NativeMouseReader;
+import xyz.tbvns.ghostTrainer.Ui.Ui;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -25,7 +29,7 @@ import java.util.logging.Logger;
 public class Main extends ApplicationAdapter {
     ModelBatch batch;
     SpriteBatch menuBatch;
-    static Camera camera;
+    public static Camera camera;
     Environment environment;
     ModelCache cache;
     public static boolean reset = false;
@@ -40,8 +44,8 @@ public class Main extends ApplicationAdapter {
     SpriteBatch spriteBatch;
     Sprite crossair;
     Sprite ghost;
-    BitmapFont titleFont;
-    BitmapFont versionFont;
+    public static BitmapFont titleFont;
+    public static BitmapFont versionFont;
     int ghostRotation = 1;
 
     @Override
@@ -51,12 +55,12 @@ public class Main extends ApplicationAdapter {
         menuBatch = new SpriteBatch();
         crossair = new Sprite(new Texture(Gdx.files.internal("GhostTrainerCrossair.png")));
         ghost = new Sprite(new Texture(Gdx.files.internal("GhostTrainerGhost.png")));
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         crossair.setBounds(0, 0, crossair.getTexture().getWidth() / 2, crossair.getTexture().getHeight() / 2);
         crossair.setOrigin(crossair.getWidth() / 2, crossair.getHeight() / 2);
 
         ghost.setBounds(0, 0, ghost.getTexture().getWidth() / 2, ghost.getTexture().getHeight() / 2);
         ghost.setOrigin(ghost.getWidth() / 2, ghost.getHeight() / 2);
+
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Aero Matics Bold.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 40; // font size
@@ -112,9 +116,10 @@ public class Main extends ApplicationAdapter {
         } catch (NativeHookException e) {
             throw new RuntimeException(e);
         }
-        MouseMovement.create();
+//        MouseMovement.create();
         KeyBoard.create();
         MouseClick.create();
+        NativeMouseReader.hook();
     }
 
     @Override
@@ -140,8 +145,6 @@ public class Main extends ApplicationAdapter {
                 cache.add(instance);
                 models.add(instance);
             }
-            MouseMovement.OldMousePosX = Toolkit.getDefaultToolkit().getScreenSize().width / 2;
-            MouseMovement.OldMousePosY = Toolkit.getDefaultToolkit().getScreenSize().height / 2;
 
             cache.end();
             reset = false;
@@ -150,6 +153,7 @@ public class Main extends ApplicationAdapter {
         if (Constant.inMenu) {
             menuBatch.begin();
             titleFont.draw(menuBatch, "Menu \\o/", 200, 200);
+            Ui.getMain().draw(menuBatch, 1);
             menuBatch.end();
         }
 
@@ -187,18 +191,20 @@ public class Main extends ApplicationAdapter {
     }
 
     @Override
-
     public void dispose() {
         batch.dispose();
         spriteBatch.dispose();
         ghost.getTexture().dispose();
         crossair.getTexture().dispose();
+        menuBatch.dispose();
 
         try {
             GlobalScreen.unregisterNativeHook();
         } catch (NativeHookException e) {
             throw new RuntimeException(e);
         }
+
+        NativeMouseReader.unhook();
     }
 
     @Override

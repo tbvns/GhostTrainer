@@ -1,12 +1,8 @@
 package xyz.tbvns.ghostTrainer.lwjgl3;
 
-import com.formdev.flatlaf.FlatDarculaLaf;
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatIntelliJLaf;
-import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import xyz.tbvns.ghostTrainer.Inputs.NativeMouseReader;
 import xyz.tbvns.ghostTrainer.Main;
-import xyz.tbvns.ghostTrainer.MouseMovement;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +21,7 @@ public class Launcher {
         frame.setSize(180, 265);
         frame.setResizable(false);
 
-        JTextField sensitivity = new JTextField(String.valueOf(MouseMovement.sensitivity));
+        JTextField sensitivity = new JTextField(String.valueOf(NativeMouseReader.sensitivity));
         JTextField fov = new JTextField(String.valueOf(Main.fov));
         JButton color = new JButton("Select color");
         JButton targetSettings = new JButton("Spawn settings");
@@ -51,11 +47,10 @@ public class Launcher {
 
         launch.addActionListener(a -> {
             try {
-                MouseMovement.sensitivity = Float.parseFloat(sensitivity.getText());
+                NativeMouseReader.sensitivity = Float.parseFloat(sensitivity.getText());
                 Main.fov = Integer.parseInt(fov.getText());
                 Main.color = new Color(Main.color.getRed(), Main.color.getGreen(), Main.color.getBlue(), Integer.parseInt(transparency.getText()));
                 frame.dispose();
-                System.out.printf(String.valueOf(MouseMovement.sensitivity));
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(frame, "Could not get number " + e.getMessage().toLowerCase(), "Error: invalid value", JOptionPane.ERROR_MESSAGE);
             }
@@ -94,6 +89,5 @@ public class Launcher {
         Utils.setIcon(newFrame);
         newFrame.setVisible(true);
         newFrame.setSize(180, 80);
-
     }
 }

@@ -1,12 +1,13 @@
-package xyz.tbvns.ghostTrainer;
+package xyz.tbvns.ghostTrainer.Inputs;
 
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
-import org.jnativehook.GlobalScreen;
-import org.jnativehook.mouse.NativeMouseEvent;
-import org.jnativehook.mouse.NativeMouseInputListener;
+import com.github.kwhat.jnativehook.GlobalScreen;
+import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
+import com.github.kwhat.jnativehook.mouse.NativeMouseInputListener;
+import xyz.tbvns.ghostTrainer.Main;
 
 import java.awt.*;
 import java.util.ArrayList;

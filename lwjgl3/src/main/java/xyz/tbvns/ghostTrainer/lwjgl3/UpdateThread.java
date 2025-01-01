@@ -1,7 +1,9 @@
 package xyz.tbvns.ghostTrainer.lwjgl3;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
 import org.lwjgl.glfw.GLFW;
+import org.lwjgl.opengl.GL;
 import xyz.tbvns.ghostTrainer.Constant;
 import xyz.tbvns.ghostTrainer.Main;
 
@@ -14,9 +16,11 @@ public class UpdateThread implements Runnable {
             if (oldInMenu != Constant.inMenu) {
                 if (Constant.inMenu) {
                     GLFW.glfwSetWindowAttrib(Lwjgl3Launcher.window.getWindowHandle(), GLFW.GLFW_MOUSE_PASSTHROUGH, GLFW.GLFW_FALSE);
+                    GLFW.glfwFocusWindow(Lwjgl3Launcher.window.getWindowHandle());
+                    Gdx.graphics.setCursor(Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("cursor.png")), 0, 0));
                 } else {
                     GLFW.glfwSetWindowAttrib(Lwjgl3Launcher.window.getWindowHandle(), GLFW.GLFW_MOUSE_PASSTHROUGH, GLFW.GLFW_TRUE);
-                    GLFW.glfwFocusWindow(Lwjgl3Launcher.window.getWindowHandle());
+                    Gdx.input.setCursorCatched(false);
                 }
                 oldInMenu = Constant.inMenu;
             }

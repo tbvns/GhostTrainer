@@ -1,7 +1,6 @@
 package xyz.tbvns.ghostTrainer.lwjgl3;
 
 import xyz.tbvns.ghostTrainer.Main;
-import xyz.tbvns.ghostTrainer.MouseMovement;
 
 import javax.swing.*;
 import java.awt.*;

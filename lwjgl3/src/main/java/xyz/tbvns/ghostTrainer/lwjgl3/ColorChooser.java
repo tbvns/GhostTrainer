@@ -19,7 +19,6 @@ public class ColorChooser {
         JButton select = new JButton("Select");
         select.addActionListener(a -> {
             Main.color = chooser.getColor();
-            System.out.println(Main.color);
             frame.dispose();
         });
 

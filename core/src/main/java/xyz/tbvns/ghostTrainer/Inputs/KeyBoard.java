@@ -1,15 +1,15 @@
-package xyz.tbvns.ghostTrainer;
+package xyz.tbvns.ghostTrainer.Inputs;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
-import org.jnativehook.GlobalScreen;
-import org.jnativehook.keyboard.NativeKeyEvent;
-import org.jnativehook.keyboard.NativeKeyListener;
+import com.github.kwhat.jnativehook.GlobalScreen;
+import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
+import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
+import xyz.tbvns.ghostTrainer.Constant;
+import xyz.tbvns.ghostTrainer.Main;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,15 +25,14 @@ public class KeyBoard implements NativeKeyListener {
 
     @Override
     public void nativeKeyPressed(NativeKeyEvent nativeKeyEvent) {
-
-        System.out.println(nativeKeyEvent.getKeyCode());
-
-        if (nativeKeyEvent.getKeyCode() == 22) {
-            Constant.inMenu = !Constant.inMenu;
-        }
+//        if (nativeKeyEvent.getKeyCode() == 22) {
+//            Constant.inMenu = !Constant.inMenu;
+//            Main.show = false;
+//        }
 
 
         if (nativeKeyEvent.getKeyCode() == 1) {
+            Constant.inMenu = false;
             if (Main.show) {
                 Main.show = false;
             } else if (System.currentTimeMillis() - last < 200) {
