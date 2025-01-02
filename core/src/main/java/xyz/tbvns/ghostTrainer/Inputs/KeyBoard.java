@@ -26,11 +26,10 @@ public class KeyBoard implements NativeKeyListener {
 
     @Override
     public void nativeKeyPressed(NativeKeyEvent nativeKeyEvent) {
-//        if (nativeKeyEvent.getKeyCode() == 22) {
-//            Constant.inMenu = !Constant.inMenu;
-//            Main.show = false;
-//        }
-
+        if (nativeKeyEvent.getKeyCode() == 22) {
+            Constant.inMenu = !Constant.inMenu;
+            Main.show = false;
+        }
 
         if (nativeKeyEvent.getKeyCode() == 1) {
             Constant.inMenu = false;

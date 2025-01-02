@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g3d.*;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
+import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
 import xyz.tbvns.ghostTrainer.Config.Config;
@@ -158,7 +159,9 @@ public class Main extends ApplicationAdapter {
         if (Constant.inMenu) {
             menuBatch.begin();
             titleFont.draw(menuBatch, "Menu \\o/", 200, 200);
-            Ui.getMain().draw(menuBatch, 1);
+            VerticalGroup vg = Ui.getMain();
+            vg.draw(menuBatch, 1);
+            vg.act(Gdx.graphics.getDeltaTime());
             menuBatch.end();
         }
 
