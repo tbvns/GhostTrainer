@@ -13,6 +13,8 @@ import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
+import xyz.tbvns.ghostTrainer.Config.Config;
+import xyz.tbvns.ghostTrainer.Config.ConfigManager;
 import xyz.tbvns.ghostTrainer.Inputs.KeyBoard;
 import xyz.tbvns.ghostTrainer.Inputs.MouseClick;
 import xyz.tbvns.ghostTrainer.Inputs.NativeMouseReader;
@@ -37,10 +39,7 @@ public class Main extends ApplicationAdapter {
     public static boolean updateCache = false;
     public static Model sphere;
     public static List<ModelInstance> models = new ArrayList<>();
-    public static int fov = 75;
-    public static java.awt.Color color = java.awt.Color.CYAN;
-    public static int ballCount = 10;
-    public static float size = 1f;
+
     SpriteBatch spriteBatch;
     Sprite crossair;
     Sprite ghost;
@@ -50,6 +49,12 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create() {
+        try {
+            ConfigManager.setUp();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         //2D
         spriteBatch = new SpriteBatch();
         menuBatch = new SpriteBatch();
@@ -80,13 +85,13 @@ public class Main extends ApplicationAdapter {
 
         ModelBuilder modelBuilder = new ModelBuilder();
 
-        sphere = modelBuilder.createSphere(size, size, size, 20, 20,
-            new Material(ColorAttribute.createDiffuse(new Color((float) color.getRed() / 255, (float) color.getGreen() / 255, (float) color.getBlue() / 255, (float) color.getAlpha() / 255))),
+        sphere = modelBuilder.createSphere(Config.size, Config.size, Config.size, 20, 20,
+            new Material(ColorAttribute.createDiffuse(new Color(Config.r / 255, Config.g / 255, Config.b / 255, Config.a / 255))),
             VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal
         );
 
         cache.begin(camera);
-        for (int i = 0; i <= ballCount; i++) {
+        for (int i = 0; i <= Config.ballCount; i++) {
             Random random = new Random();
             int x = random.nextInt(-10, 10);
             int y = random.nextInt(-5, 5);
@@ -97,7 +102,7 @@ public class Main extends ApplicationAdapter {
         }
         cache.end();
 
-        camera = new PerspectiveCamera(fov,
+        camera = new PerspectiveCamera(Config.fov,
             Gdx.graphics.getWidth(),
             Gdx.graphics.getHeight());
 
@@ -136,7 +141,7 @@ public class Main extends ApplicationAdapter {
             models = new ArrayList<>();
             cache = new ModelCache();
             cache.begin(camera);
-            for (int i = 0; i <= ballCount; i++) {
+            for (int i = 0; i <= Config.ballCount; i++) {
                 Random random = new Random();
                 int x = random.nextInt(-10, 10);
                 int y = random.nextInt(-5, 5);

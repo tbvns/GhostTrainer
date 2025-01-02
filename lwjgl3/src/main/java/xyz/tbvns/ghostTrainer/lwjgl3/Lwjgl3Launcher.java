@@ -10,10 +10,7 @@ import java.io.IOException;
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
     public static Lwjgl3Window window;
-    public static void main(String[] args) throws InterruptedException, IOException {
-
-        Launcher.open();
-
+    public static void main(String[] args) throws Exception {
         //LibGDX stuff
         if (StartupHelper.startNewJvmIfRequired()) return; // This handles macOS support and helps on Windows.
         createApplication();
@@ -29,14 +26,10 @@ public class Lwjgl3Launcher {
         configuration.useVsync(true);
         configuration.setTransparentFramebuffer(true);
         configuration.setDecorated(false);
-        //// Limits FPS to the refresh rate of the currently active monitor.
         configuration.setForegroundFPS(Lwjgl3ApplicationConfiguration.getDisplayMode().refreshRate);
-        //// If you remove the above line and set Vsync to false, you can get unlimited FPS, which can be
-        //// useful for testing performance, but can also be very stressful to some hardware.
-        //// You may also need to configure GPU drivers to fully disable Vsync; this can cause screen tearing.
         configuration.setWindowedMode(Toolkit.getDefaultToolkit().getScreenSize().width - 1, Toolkit.getDefaultToolkit().getScreenSize().height - 1);
         configuration.setWindowIcon("GhostTrainer.png");
-
+        configuration.setBackBufferConfig(0, 0, 0, 255, 0, 16, 16);
         configuration.setWindowListener(new Lwjgl3WindowAdapter() {
             @Override
             public void created(Lwjgl3Window window) {

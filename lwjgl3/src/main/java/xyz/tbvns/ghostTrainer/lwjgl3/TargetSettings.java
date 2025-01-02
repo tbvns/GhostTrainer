@@ -1,5 +1,6 @@
 package xyz.tbvns.ghostTrainer.lwjgl3;
 
+import xyz.tbvns.ghostTrainer.Config.Config;
 import xyz.tbvns.ghostTrainer.Main;
 
 import javax.swing.*;
@@ -16,14 +17,14 @@ public class TargetSettings {
         frame.setResizable(false);
         Utils.center(frame);
 
-        JTextField targetCount = new JTextField(String.valueOf(Main.ballCount));
-        JTextField targetSize = new JTextField(String.valueOf(Main.size));
+        JTextField targetCount = new JTextField(String.valueOf(Config.ballCount));
+        JTextField targetSize = new JTextField(String.valueOf(Config.size));
         JButton save = new JButton("Save");
 
         save.addActionListener(a -> {
             try {
-                Main.ballCount = Integer.parseInt(targetCount.getText());
-                Main.size = Float.parseFloat(targetSize.getText());
+                Config.ballCount = Integer.parseInt(targetCount.getText());
+                Config.size = Float.parseFloat(targetSize.getText());
                 frame.dispose();
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(frame, "Could not get number " + e.getMessage().toLowerCase(), "Error: invalid value", JOptionPane.ERROR_MESSAGE);

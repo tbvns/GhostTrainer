@@ -13,4 +13,5 @@ dependencies {
   api "com.badlogicgames.gdx:gdx:$gdxVersion"
 // https://mvnrepository.com/artifact/com.github.kwhat/jnativehook
   implementation 'com.github.kwhat:jnativehook:2.2.2'
+  implementation 'com.github.tbvns:EZConf4j:-SNAPSHOT'
 }

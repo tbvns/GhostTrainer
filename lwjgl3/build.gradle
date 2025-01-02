@@ -30,6 +30,7 @@ dependencies {
   implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
   implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
   implementation 'com.formdev:flatlaf:3.4.1'
+  implementation 'com.github.tbvns:EZConf4j:-SNAPSHOT'
   implementation project(':core')
 }
 

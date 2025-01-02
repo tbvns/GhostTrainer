@@ -1,6 +1,8 @@
 package xyz.tbvns.ghostTrainer.lwjgl3;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import xyz.tbvns.ghostTrainer.Config.Config;
+import xyz.tbvns.ghostTrainer.Config.ConfigManager;
 import xyz.tbvns.ghostTrainer.Inputs.NativeMouseReader;
 import xyz.tbvns.ghostTrainer.Main;
 
@@ -9,9 +11,10 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Launcher {
-    public static void open() throws InterruptedException, IOException {
+    public static void open() throws Exception {
         FlatMacDarkLaf.setup();
         Settings.load();
+        ConfigManager.setUp();
 
         JFrame frame = new JFrame("Ghost Trainer launcher");
         JPanel panel = new JPanel();
@@ -22,10 +25,10 @@ public class Launcher {
         frame.setResizable(false);
 
         JTextField sensitivity = new JTextField(String.valueOf(NativeMouseReader.sensitivity));
-        JTextField fov = new JTextField(String.valueOf(Main.fov));
+        JTextField fov = new JTextField(String.valueOf(Config.fov));
         JButton color = new JButton("Select color");
         JButton targetSettings = new JButton("Spawn settings");
-        JTextField transparency = new JTextField(String.valueOf(Main.color.getAlpha()));
+        JTextField transparency = new JTextField(String.valueOf(Config.a));
         JButton launch = new JButton("Launch");
 
         targetSettings.addActionListener(a -> {
@@ -48,8 +51,8 @@ public class Launcher {
         launch.addActionListener(a -> {
             try {
                 NativeMouseReader.sensitivity = Float.parseFloat(sensitivity.getText());
-                Main.fov = Integer.parseInt(fov.getText());
-                Main.color = new Color(Main.color.getRed(), Main.color.getGreen(), Main.color.getBlue(), Integer.parseInt(transparency.getText()));
+                Config.fov = Integer.parseInt(fov.getText());
+                Config.a = Integer.parseInt(transparency.getText());
                 frame.dispose();
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(frame, "Could not get number " + e.getMessage().toLowerCase(), "Error: invalid value", JOptionPane.ERROR_MESSAGE);
@@ -58,7 +61,11 @@ public class Launcher {
                 JOptionPane.showMessageDialog(frame, "Something went wrong:\n" + e.getMessage().toLowerCase(), "Unhandled error:", JOptionPane.ERROR_MESSAGE);
             }
 
-            Settings.save();
+            try {
+                Settings.save();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
         launch.setBackground(new Color(255, 45, 45));
 

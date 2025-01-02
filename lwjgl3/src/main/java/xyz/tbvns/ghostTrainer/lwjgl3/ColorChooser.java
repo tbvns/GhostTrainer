@@ -1,5 +1,6 @@
 package xyz.tbvns.ghostTrainer.lwjgl3;
 
+import xyz.tbvns.ghostTrainer.Config.Config;
 import xyz.tbvns.ghostTrainer.Main;
 
 import javax.swing.*;
@@ -13,12 +14,15 @@ public class ColorChooser {
         frame.setResizable(false);
         frame.setSize(700, 430);
         JPanel panel = new JPanel();
-        JColorChooser chooser = new JColorChooser(Main.color);
+        JColorChooser chooser = new JColorChooser(new Color(Config.r, Config.g, Config.b, Config.a));
         chooser.setBounds(0, 0, 620, 380);
 
         JButton select = new JButton("Select");
         select.addActionListener(a -> {
-            Main.color = chooser.getColor();
+            Config.r = chooser.getColor().getRed();
+            Config.g = chooser.getColor().getGreen();
+            Config.b = chooser.getColor().getBlue();
+            Config.a = chooser.getColor().getAlpha();
             frame.dispose();
         });
 

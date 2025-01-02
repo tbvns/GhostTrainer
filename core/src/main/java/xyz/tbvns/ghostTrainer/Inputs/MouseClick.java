@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.collision.Ray;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
 import com.github.kwhat.jnativehook.mouse.NativeMouseInputListener;
+import xyz.tbvns.ghostTrainer.Config.Config;
 import xyz.tbvns.ghostTrainer.Main;
 
 import java.awt.*;
@@ -28,7 +29,7 @@ public class MouseClick implements NativeMouseInputListener {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         Ray ray = Main.camera.getPickRay((float) size.width / 2, (float) size.height / 2);
         Main.models.forEach(m -> {
-            boolean hit = Intersector.intersectRaySphere(ray, m.transform.getTranslation(new Vector3()), Main.size / 2, new Vector3());
+            boolean hit = Intersector.intersectRaySphere(ray, m.transform.getTranslation(new Vector3()), Config.size / 2, new Vector3());
             if (hit) {
                 toRemove.add(m);
                 lhit.set(true);
