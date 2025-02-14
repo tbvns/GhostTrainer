@@ -3,9 +3,7 @@ package xyz.tbvns.ghostTrainer.lwjgl3;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.opengl.GL;
 import xyz.tbvns.ghostTrainer.Constant;
-import xyz.tbvns.ghostTrainer.Main;
 
 public class UpdateThread implements Runnable {
     public static boolean close = false;

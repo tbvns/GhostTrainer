@@ -34,7 +34,7 @@ public class NativeMouseReader {
         try {
             InputStream in = NativeMouseReader.class.getResourceAsStream("/MouseEventDLL.dll");
             Path tempDll = Files.createTempFile("MouseEventDLL", ".dll");
-            Files.copy(in, tempDll, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println(Files.copy(in, tempDll, StandardCopyOption.REPLACE_EXISTING));
             System.load(tempDll.toString());
             tempDll.toFile().deleteOnExit();
         } catch (IOException e) {

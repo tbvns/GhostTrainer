@@ -1,7 +1,6 @@
 package xyz.tbvns.ghostTrainer.lwjgl3;
 
 import xyz.tbvns.ghostTrainer.Config.Config;
-import xyz.tbvns.ghostTrainer.Main;
 
 import javax.swing.*;
 import java.awt.*;

@@ -2,7 +2,6 @@ package xyz.tbvns.ghostTrainer;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -11,17 +10,16 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g3d.*;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
-import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
+import lombok.SneakyThrows;
 import xyz.tbvns.ghostTrainer.Config.Config;
 import xyz.tbvns.ghostTrainer.Config.ConfigManager;
 import xyz.tbvns.ghostTrainer.Inputs.KeyBoard;
 import xyz.tbvns.ghostTrainer.Inputs.MouseClick;
 import xyz.tbvns.ghostTrainer.Inputs.NativeMouseReader;
-import xyz.tbvns.ghostTrainer.Ui.Ui;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -31,7 +29,6 @@ import java.util.logging.Logger;
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends ApplicationAdapter {
     ModelBatch batch;
-    SpriteBatch menuBatch;
     public static Camera camera;
     Environment environment;
     ModelCache cache;
@@ -48,17 +45,14 @@ public class Main extends ApplicationAdapter {
     public static BitmapFont versionFont;
     int ghostRotation = 1;
 
+    @SneakyThrows
     @Override
     public void create() {
-        try {
-            ConfigManager.setUp();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        ConfigManager.setUp();
+        FlatDarculaLaf.setup();
 
         //2D
         spriteBatch = new SpriteBatch();
-        menuBatch = new SpriteBatch();
         crossair = new Sprite(new Texture(Gdx.files.internal("GhostTrainerCrossair.png")));
         ghost = new Sprite(new Texture(Gdx.files.internal("GhostTrainerGhost.png")));
         crossair.setBounds(0, 0, crossair.getTexture().getWidth() / 2, crossair.getTexture().getHeight() / 2);
@@ -74,7 +68,6 @@ public class Main extends ApplicationAdapter {
         generator = new FreeTypeFontGenerator(Gdx.files.internal("Aero Matics Light.ttf"));
         parameter.size = 13;
         versionFont = generator.generateFont(parameter);
-
 
         //3D
         cache = new ModelCache();
@@ -156,15 +149,6 @@ public class Main extends ApplicationAdapter {
             reset = false;
         }
 
-        if (Constant.inMenu) {
-            menuBatch.begin();
-            titleFont.draw(menuBatch, "Menu \\o/", 200, 200);
-            VerticalGroup vg = Ui.getMain();
-            vg.draw(menuBatch, 1);
-            vg.act(Gdx.graphics.getDeltaTime());
-            menuBatch.end();
-        }
-
         if (show) {
             batch.begin(camera);
             batch.render(cache, environment);
@@ -204,7 +188,6 @@ public class Main extends ApplicationAdapter {
         spriteBatch.dispose();
         ghost.getTexture().dispose();
         crossair.getTexture().dispose();
-        menuBatch.dispose();
 
         try {
             GlobalScreen.unregisterNativeHook();

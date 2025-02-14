@@ -11,7 +11,11 @@ dependencies {
   api "com.badlogicgames.gdx:gdx-bullet:$gdxVersion"
   api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
   api "com.badlogicgames.gdx:gdx:$gdxVersion"
-// https://mvnrepository.com/artifact/com.github.kwhat/jnativehook
+  annotationProcessor "org.projectlombok:lombok:1.18.36"
+  implementation "org.projectlombok:lombok:1.18.36"
   implementation 'com.github.kwhat:jnativehook:2.2.2'
   implementation 'com.github.tbvns:EZConf4j:-SNAPSHOT'
+  implementation 'ai.djl.tensorflow:tensorflow-api:0.32.0'
+  implementation 'ai.djl.tensorflow:tensorflow-engine:0.32.0'
+  implementation 'com.formdev:flatlaf:3.5.4'
 }

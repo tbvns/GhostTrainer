@@ -1,41 +1,152 @@
 package xyz.tbvns.ghostTrainer.Ui;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import xyz.tbvns.ghostTrainer.Config.Config;
+import xyz.tbvns.ghostTrainer.Config.ConfigManager;
 import xyz.tbvns.ghostTrainer.Main;
+import xyz.tbvns.ghostTrainer.Utils;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Ui {
-    public static VerticalGroup getMain() {
-        VerticalGroup verticalGroup = new VerticalGroup();
-        verticalGroup.addActor(new Label("In game sensitivity:", new Label.LabelStyle(Main.titleFont, Color.BLACK)));
-        //verticalGroup.addActor(new TextField("", new TextField.TextFieldStyle()));
-        verticalGroup.addActor(new Label("Field of view: " + Config.fov, new Label.LabelStyle(Main.titleFont, Color.BLACK)));
-        //verticalGroup.addActor(new TextField("", new TextField.TextFieldStyle()));
-        verticalGroup.center();
-        verticalGroup.setBounds(500, 500, 500, 500);
+    private static boolean showed = false;
+    public static JFrame frame;
 
-        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        NinePatch patch1 = new NinePatch(new Texture("UI/button1-9p.png"), 6, 6, 6, 6);
-        NinePatch patch2 = new NinePatch(new Texture("UI/button2-9p.png"), 6, 6, 6, 6);
-        textButtonStyle.font = new BitmapFont();
-        textButtonStyle.over = new NinePatchDrawable(patch1);
-        textButtonStyle.up = new NinePatchDrawable(patch2);
-        TextButton button = new TextButton("Button1Button1Button1Button1Button1Button1u", textButtonStyle);
-        verticalGroup.addActor(button);
-        button.addListener(event -> {
-            System.out.println("Hello worldu");
-           return true;
-        });
-        return verticalGroup;
+    public static void showSettings() {
+        if (showed) {
+            Arrays.stream(JFrame.getFrames()).forEach(Frame::dispose);
+            return;
+        }
+
+        frame = new JFrame("GT Settings");
+        frame.setSize(200, 230);
+        frame.toFront();
+        frame.setResizable(false);
+        frame.setAlwaysOnTop(true);
+        frame.setUndecorated(true);
+        UIUtils.center(frame);
+
+        JPanel panel = new JPanel(){{
+            setBorder(new EmptyBorder(15, 15, 15, 15));
+            add(new JButton("Targets color"){{
+                setPreferredSize(new Dimension(frame.getWidth() - 30, 30));
+                addActionListener(a -> {
+                    JFrame colorFrame = new JFrame("Color picker");
+                    JPanel p = new JPanel();
+                    JColorChooser colorChooser = new JColorChooser(new Color(Config.r / 255, Config.g / 255, Config.b / 255, Config.a / 255));
+                    JButton b = new JButton("Save"){{
+                        addActionListener(a -> {
+                            colorFrame.dispose();
+                            Config.r = colorChooser.getColor().getRed();
+                            Config.g = colorChooser.getColor().getGreen();
+                            Config.b = colorChooser.getColor().getBlue();
+                            Config.a = colorChooser.getColor().getAlpha();
+                            ConfigManager.save();
+                        });
+                    }};
+                    p.add(colorChooser);
+                    p.add(b);
+                    colorFrame.setContentPane(p);
+                    colorFrame.setSize(650, 390);
+                    colorFrame.setUndecorated(true);
+                    colorFrame.setAlwaysOnTop(true);
+                    colorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+                    UIUtils.center(colorFrame);
+                    colorFrame.setVisible(true);
+                });
+            }});
+
+            AtomicInteger VFov = new AtomicInteger(Config.fov);
+            AtomicInteger VCount = new AtomicInteger(Config.ballCount);
+            final float[] VSize = {Config.size};
+
+            JPanel fov = new JPanel(new BorderLayout()) {{
+                add(new JLabel("Field of view:") {{
+                    setAlignmentX(LEFT_ALIGNMENT);
+                }}, BorderLayout.WEST);
+                JComboBox<Integer> box = new JComboBox<>() {{
+                    for (int i = 50; i <= 120; i++) {
+                        addItem(i);
+                    }
+                    setSelectedIndex(Config.fov - 50);
+                    setPreferredSize(new Dimension(60, 25));
+                    addItemListener(i -> {
+                        VFov.set(getSelectedIndex() + 50);
+                    });
+                }};
+                add(box, BorderLayout.EAST);
+                setPreferredSize(new Dimension(frame.getWidth() - 30, 30));
+            }};
+            add(fov);
+
+            JPanel ballCount = new JPanel(new BorderLayout()) {{
+                add(new JLabel("Ball counts:") {{
+                    setAlignmentX(LEFT_ALIGNMENT);
+                }}, BorderLayout.WEST);
+                JComboBox<Integer> box = new JComboBox<>() {{
+                    for (int i = 1; i <= 20; i++) {
+                        addItem(i);
+                    }
+                    setSelectedIndex(Config.ballCount - 1);
+                    setPreferredSize(new Dimension(60, 25));
+                    addItemListener(i -> {
+                        VCount.set(getSelectedIndex() + 1);
+                    });
+                }};
+                add(box, BorderLayout.EAST);
+                setPreferredSize(new Dimension(frame.getWidth() - 30, 30));
+            }};
+            add(ballCount);
+
+            add(new JPanel(new BorderLayout()) {{
+                setPreferredSize(new Dimension(frame.getWidth() - 30, 60));
+                add(new JLabel("Targets size:"), BorderLayout.WEST);
+                JLabel nb = new JLabel(String.valueOf(Config.size));
+                add(nb, BorderLayout.EAST);
+                JSlider slider = new JSlider(1, 20) {{
+                    setValue(Math.round(Config.size * 10));
+                    setPreferredSize(new Dimension(frame.getWidth() - 30, 30));
+                }};
+                slider.addChangeListener(c -> {
+                    nb.setText(String.valueOf((float) slider.getValue() / 10));
+                    VSize[0] = (float) slider.getValue() / 10;
+                });
+                JPanel sliderPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                sliderPanel.add(slider);
+                add(sliderPanel, BorderLayout.SOUTH);
+            }});
+            add(new JButton("Save"){{
+                setPreferredSize(new Dimension(frame.getWidth() - 30, 30));
+                addActionListener(a -> {
+                    frame.dispose();
+                    Config.fov = VFov.get();
+                    Config.ballCount = VCount.get();
+                    Config.size = VSize[0];
+                    ConfigManager.save();
+                });
+            }});
+        }};
+
+        panel.setLayout(new FlowLayout());
+        frame.setContentPane(panel);
+
+        showed = true;
+        Main.show = false;
+
+        frame.setVisible(true);
+        new Thread(() -> {
+           while (frame.isShowing()) {
+               Utils.sleep(100);
+           }
+           showed = false;
+        }){{
+            setName("FrameChecker");
+            setDaemon(true);
+            start();
+        }};
+
     }
 }

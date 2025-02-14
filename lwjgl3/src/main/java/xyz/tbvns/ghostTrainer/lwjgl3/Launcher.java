@@ -4,7 +4,6 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import xyz.tbvns.ghostTrainer.Config.Config;
 import xyz.tbvns.ghostTrainer.Config.ConfigManager;
 import xyz.tbvns.ghostTrainer.Inputs.NativeMouseReader;
-import xyz.tbvns.ghostTrainer.Main;
 
 import javax.swing.*;
 import java.awt.*;
