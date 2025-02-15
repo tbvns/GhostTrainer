@@ -137,6 +137,7 @@ public class Ui {
         Main.show = false;
 
         frame.setVisible(true);
+        frame.requestFocus();
         new Thread(() -> {
            while (frame.isShowing()) {
                Utils.sleep(100);

@@ -16,6 +16,7 @@ import com.github.kwhat.jnativehook.NativeHookException;
 import lombok.SneakyThrows;
 import xyz.tbvns.ghostTrainer.Config.Config;
 import xyz.tbvns.ghostTrainer.Config.ConfigManager;
+import xyz.tbvns.ghostTrainer.Config.ValorantConfigReader;
 import xyz.tbvns.ghostTrainer.Inputs.KeyBoard;
 import xyz.tbvns.ghostTrainer.Inputs.MouseClick;
 import xyz.tbvns.ghostTrainer.Inputs.NativeMouseReader;
@@ -48,6 +49,7 @@ public class Main extends ApplicationAdapter {
     @SneakyThrows
     @Override
     public void create() {
+        ValorantConfigReader.start();
         ConfigManager.setUp();
         FlatDarculaLaf.setup();
 
