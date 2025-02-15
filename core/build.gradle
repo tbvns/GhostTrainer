@@ -18,4 +18,5 @@ dependencies {
   implementation 'ai.djl.tensorflow:tensorflow-api:0.32.0'
   implementation 'ai.djl.tensorflow:tensorflow-engine:0.32.0'
   implementation 'com.formdev:flatlaf:3.5.4'
+  implementation 'net.lingala.zip4j:zip4j:2.11.5'
 }

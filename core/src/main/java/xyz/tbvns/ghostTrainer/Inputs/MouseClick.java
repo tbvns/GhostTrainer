@@ -8,6 +8,8 @@ import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
 import com.github.kwhat.jnativehook.mouse.NativeMouseInputListener;
 import xyz.tbvns.ghostTrainer.Config.Config;
+import xyz.tbvns.ghostTrainer.Game.AimeTrainerRenderer;
+import xyz.tbvns.ghostTrainer.Game.BallManager;
 import xyz.tbvns.ghostTrainer.Main;
 
 import java.awt.*;
@@ -23,32 +25,7 @@ public class MouseClick implements NativeMouseInputListener {
 
     @Override
     public void nativeMousePressed(NativeMouseEvent nativeMouseEvent) {
-        List<ModelInstance> toRemove = new ArrayList<>();
-
-        AtomicBoolean lhit = new AtomicBoolean(false);
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        Ray ray = Main.camera.getPickRay((float) size.width / 2, (float) size.height / 2);
-        Main.models.forEach(m -> {
-            boolean hit = Intersector.intersectRaySphere(ray, m.transform.getTranslation(new Vector3()), Config.size / 2, new Vector3());
-            if (hit) {
-                toRemove.add(m);
-                lhit.set(true);
-            }
-        });
-        toRemove.forEach(m -> {
-            Main.models.remove(m);
-        });
-
-        if (lhit.get()) {
-            Random random = new Random();
-            int x = random.nextInt(-10, 10);
-            int y = random.nextInt(-5, 5);
-            int z = random.nextInt(20, 40);
-            ModelInstance instance = new ModelInstance(Main.sphere, x, y, z);
-            Main.models.add(instance);
-        }
-
-        Main.updateCache = true;
+        BallManager.hit();
     }
 
     @Override

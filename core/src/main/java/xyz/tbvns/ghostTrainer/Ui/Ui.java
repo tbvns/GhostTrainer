@@ -2,6 +2,7 @@ package xyz.tbvns.ghostTrainer.Ui;
 
 import xyz.tbvns.ghostTrainer.Config.Config;
 import xyz.tbvns.ghostTrainer.Config.ConfigManager;
+import xyz.tbvns.ghostTrainer.Game.AimeTrainerRenderer;
 import xyz.tbvns.ghostTrainer.Main;
 import xyz.tbvns.ghostTrainer.Utils;
 
@@ -110,7 +111,7 @@ public class Ui {
                     setValue(Math.round(Config.size * 10));
                     setPreferredSize(new Dimension(frame.getWidth() - 30, 30));
                 }};
-                slider.addChangeListener(c -> {
+                slider.addChangeListener(c_ -> {
                     nb.setText(String.valueOf((float) slider.getValue() / 10));
                     VSize[0] = (float) slider.getValue() / 10;
                 });
@@ -126,6 +127,7 @@ public class Ui {
                     Config.ballCount = VCount.get();
                     Config.size = VSize[0];
                     ConfigManager.save();
+                    AimeTrainerRenderer.reload();
                 });
             }});
         }};

@@ -2,6 +2,7 @@ package xyz.tbvns.ghostTrainer.Inputs;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector3;
+import xyz.tbvns.ghostTrainer.Game.AimeTrainerRenderer;
 import xyz.tbvns.ghostTrainer.Main;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class NativeMouseReader {
         float fx = (x / fixFactor) * sensitivity;
         float fy = (y / fixFactor) * sensitivity;
 
-        Camera camera = Main.camera;
+        Camera camera = AimeTrainerRenderer.getCamera();
 
         Vector3 tmp = new Vector3();
         camera.direction.rotate(camera.up, -fx);

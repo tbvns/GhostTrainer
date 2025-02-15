@@ -19,8 +19,8 @@ public class BallManager {
 
         AtomicBoolean lhit = new AtomicBoolean(false);
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        Ray ray = Main.camera.getPickRay((float) size.width / 2, (float) size.height / 2);
-        Main.models.forEach(m -> {
+        Ray ray = AimeTrainerRenderer.getCamera().getPickRay((float) size.width / 2, (float) size.height / 2);
+        AimeTrainerRenderer.getModels().forEach(m -> {
             boolean hit = Intersector.intersectRaySphere(ray, m.transform.getTranslation(new Vector3()), Config.size / 2, new Vector3());
             if (hit) {
                 toRemove.add(m);
@@ -28,7 +28,7 @@ public class BallManager {
             }
         });
         toRemove.forEach(m -> {
-            Main.models.remove(m);
+            AimeTrainerRenderer.getModels().remove(m);
         });
 
         if (lhit.get()) {
@@ -36,10 +36,10 @@ public class BallManager {
             int x = random.nextInt(-10, 10);
             int y = random.nextInt(-5, 5);
             int z = random.nextInt(20, 40);
-            ModelInstance instance = new ModelInstance(Main.sphere, x, y, z);
-            Main.models.add(instance);
+            ModelInstance instance = new ModelInstance(AimeTrainerRenderer.getSphere(), x, y, z);
+            AimeTrainerRenderer.getModels().add(instance);
         }
 
-        Main.updateCache = true;
+        AimeTrainerRenderer.setUpdateCache(true);
     }
 }

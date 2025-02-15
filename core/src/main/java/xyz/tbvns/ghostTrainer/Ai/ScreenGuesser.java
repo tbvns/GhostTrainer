@@ -23,7 +23,7 @@ public class ScreenGuesser {
     private static boolean active = false;
     private static Thread thread;
     public static Runnable runnable = () -> {
-        Path modelDir = Paths.get("C:\\Users\\Tbvns\\Downloads\\model\\model.savedmodel");
+        Path modelDir = Paths.get(AIManager.extract());
 
         JFrame frame = new JFrame("Image viewer");
         JPanel panel = new JPanel();
@@ -50,13 +50,9 @@ public class ScreenGuesser {
             while (active) {
                 Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
                 BufferedImage capture = new Robot().createScreenCapture(screenRect);
+                java.awt.Image captureImg = capture.getScaledInstance(224, 244, java.awt.Image.SCALE_FAST);
 
-                int h = 224;
-                int w = capture.getWidth() / (capture.getHeight() / 224);
-
-                capture = ImageConverter.convertToBufferedImage(capture.getScaledInstance(w, h, java.awt.Image.SCALE_FAST));
-                capture = capture.getSubimage(w / 2 - 224 / 2, 0, 224, 224);
-                label.setIcon(new ImageIcon(capture));
+                label.setIcon(new ImageIcon(ImageConverter.convertToBufferedImage(captureImg)));
                 frame.invalidate();
 
                 Image image = ImageFactory.getInstance().fromImage(capture);
