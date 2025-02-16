@@ -52,7 +52,7 @@ public class AimeTrainerRenderer {
         );
 
         cache.begin(camera);
-        for (int i = 0; i <= Config.ballCount; i++) {
+        for (int i = 1; i <= Config.ballCount; i++) {
             Random random = new Random();
             int x = random.nextInt(-10, 10);
             int y = random.nextInt(-5, 5);
@@ -87,7 +87,7 @@ public class AimeTrainerRenderer {
             models = new ArrayList<>();
             cache = new ModelCache();
             cache.begin(camera);
-            for (int i = 0; i <= Config.ballCount; i++) {
+            for (int i = 1; i <= Config.ballCount; i++) {
                 Random random = new Random();
                 int x = random.nextInt(-10, 10);
                 int y = random.nextInt(-5, 5);
