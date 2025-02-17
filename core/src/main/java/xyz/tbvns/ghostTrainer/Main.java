@@ -67,6 +67,8 @@ public class Main extends ApplicationAdapter {
         if (show && ScreenGuesser.getScreen().equals("inGame")) {
             LogoRenderer.render();
             AimeTrainerRenderer.render();
+        } else {
+            show = false;
         }
     }
 

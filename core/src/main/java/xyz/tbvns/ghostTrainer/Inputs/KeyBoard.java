@@ -3,6 +3,7 @@ package xyz.tbvns.ghostTrainer.Inputs;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
+import xyz.tbvns.ghostTrainer.Ai.ScreenGuesser;
 import xyz.tbvns.ghostTrainer.Game.AimeTrainerRenderer;
 import xyz.tbvns.ghostTrainer.Game.BallManager;
 import xyz.tbvns.ghostTrainer.Main;
@@ -17,15 +18,11 @@ public class KeyBoard implements NativeKeyListener {
     @Override
     public void nativeKeyPressed(NativeKeyEvent nativeKeyEvent) {
         if (nativeKeyEvent.getKeyCode() == 60) {
-            AimeTrainerRenderer.setReset(true);
-            Main.show = !Main.show;
-        }
-
-        if (nativeKeyEvent.getKeyCode() == 62) {
-            try {
+            if (ScreenGuesser.getScreen().equals("inGame")) {
+                AimeTrainerRenderer.setReset(true);
+                Main.show = !Main.show;
+            } else {
                 Ui.showSettings();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
             }
         }
 

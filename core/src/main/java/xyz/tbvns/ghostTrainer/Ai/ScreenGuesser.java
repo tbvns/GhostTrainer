@@ -10,6 +10,7 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import lombok.Getter;
+import xyz.tbvns.ghostTrainer.Config.Config;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,7 +61,7 @@ public class ScreenGuesser {
                 Classifications result = predictor.predict(image);
                 screen = result.best().getClassName();
 
-                Thread.sleep(1000);
+                Thread.sleep(Config.AIDelay);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

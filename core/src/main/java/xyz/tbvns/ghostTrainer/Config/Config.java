@@ -8,4 +8,5 @@ public class Config implements xyz.tbvns.Config {
     public static float a = 255;
     public static int ballCount = 10;
     public static float size = 1f;
+    public static int AIDelay = 1000;
 }

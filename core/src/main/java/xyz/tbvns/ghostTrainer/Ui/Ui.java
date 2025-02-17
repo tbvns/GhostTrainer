@@ -23,7 +23,7 @@ public class Ui {
         }
 
         frame = new JFrame("GT Settings");
-        frame.setSize(200, 230);
+        frame.setSize(200, 300);
         frame.toFront();
         frame.setResizable(false);
         frame.setAlwaysOnTop(true);
@@ -63,6 +63,7 @@ public class Ui {
             AtomicInteger VFov = new AtomicInteger(Config.fov);
             AtomicInteger VCount = new AtomicInteger(Config.ballCount);
             final float[] VSize = {Config.size};
+            final int[] VAIDelay = {Config.AIDelay};
 
             JPanel fov = new JPanel(new BorderLayout()) {{
                 add(new JLabel("Field of view:") {{
@@ -101,7 +102,6 @@ public class Ui {
                 setPreferredSize(new Dimension(frame.getWidth() - 30, 30));
             }};
             add(ballCount);
-
             add(new JPanel(new BorderLayout()) {{
                 setPreferredSize(new Dimension(frame.getWidth() - 30, 60));
                 add(new JLabel("Targets size:"), BorderLayout.WEST);
@@ -119,6 +119,24 @@ public class Ui {
                 sliderPanel.add(slider);
                 add(sliderPanel, BorderLayout.SOUTH);
             }});
+
+            add(new JPanel(new BorderLayout()) {{
+                setPreferredSize(new Dimension(frame.getWidth() - 30, 60));
+                add(new JLabel("AI Delay:"), BorderLayout.WEST);
+                JLabel nb = new JLabel((float) Config.AIDelay / 1000 + "s");
+                add(nb, BorderLayout.EAST);
+                JSlider slider = new JSlider(1, 40) {{
+                    setValue(Math.round((float) Config.AIDelay / 50));
+                    setPreferredSize(new Dimension(frame.getWidth() - 30, 30));
+                }};
+                slider.addChangeListener(c_ -> {
+                    nb.setText((float) (slider.getValue() * 50) / 1000 + "s");
+                    VAIDelay[0] = slider.getValue() * 50;
+                });
+                JPanel sliderPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                sliderPanel.add(slider);
+                add(sliderPanel, BorderLayout.SOUTH);
+            }});
             add(new JButton("Save"){{
                 setPreferredSize(new Dimension(frame.getWidth() - 30, 30));
                 addActionListener(a -> {
@@ -126,6 +144,7 @@ public class Ui {
                     Config.fov = VFov.get();
                     Config.ballCount = VCount.get();
                     Config.size = VSize[0];
+                    Config.AIDelay = VAIDelay[0];
                     ConfigManager.save();
                     AimeTrainerRenderer.reload();
                 });
