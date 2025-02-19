@@ -36,7 +36,6 @@ public class KeyBoard implements NativeKeyListener {
     }
 
     public static class createRunnable implements Runnable {
-
         @Override
         public void run() {
             GlobalScreen.addNativeKeyListener(new KeyBoard());

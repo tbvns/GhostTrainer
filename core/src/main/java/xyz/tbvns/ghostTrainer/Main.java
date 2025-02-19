@@ -50,9 +50,11 @@ public class Main extends ApplicationAdapter {
         AimeTrainerRenderer.create();
 
         //MouseMovement.create();
-        KeyBoard.create();
-        MouseClick.create();
-        NativeMouseReader.hook();
+        new Thread(() -> {
+            KeyBoard.create();
+            MouseClick.create();
+            NativeMouseReader.hook();
+        }).start();
 
         Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
         logger.setLevel(Level.OFF);

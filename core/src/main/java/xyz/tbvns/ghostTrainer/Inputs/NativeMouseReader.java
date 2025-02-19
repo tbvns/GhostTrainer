@@ -2,9 +2,12 @@ package xyz.tbvns.ghostTrainer.Inputs;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector3;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import xyz.tbvns.ghostTrainer.Game.AimeTrainerRenderer;
 import xyz.tbvns.ghostTrainer.Main;
+import xyz.tbvns.ghostTrainer.Ui.ErrorHandler;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -36,7 +39,20 @@ public class NativeMouseReader {
             InputStream in = NativeMouseReader.class.getResourceAsStream("/MouseEventDLL.dll");
             Path tempDll = Files.createTempFile("MouseEventDLL", ".dll");
             System.out.println(Files.copy(in, tempDll, StandardCopyOption.REPLACE_EXISTING));
-            System.load(tempDll.toString());
+            while (true) {
+                try {
+                    System.load(tempDll.toString());
+                    break;
+                } catch (UnsatisfiedLinkError e) {
+                    ErrorHandler.handleWithRetryAndUrl(
+                        new Exception(e),
+                        false,
+                        "https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/",
+                        "You may need to download the Windows SDK to fix this issue. Click the Open URL button to go to the download page."
+
+                    );
+                }
+            }
             tempDll.toFile().deleteOnExit();
         } catch (IOException e) {
             throw new RuntimeException("Failed to load DLL", e);
