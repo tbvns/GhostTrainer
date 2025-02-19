@@ -26,13 +26,13 @@ public class ScreenGuesser {
     public static Runnable runnable = () -> {
         Path modelDir = Paths.get(AIManager.extract());
 
-        JFrame frame = new JFrame("Image viewer");
-        JPanel panel = new JPanel();
-        frame.setContentPane(panel);
-        JLabel label = new JLabel();
-        panel.add(label);
-        frame.setVisible(true);
-        frame.setSize(400, 300);
+//        JFrame frame = new JFrame("Image viewer");
+//        JPanel panel = new JPanel();
+//        frame.setContentPane(panel);
+//        JLabel label = new JLabel();
+//        panel.add(label);
+//        frame.setVisible(true);
+//        frame.setSize(400, 300);
 
         Criteria<Image, Classifications> criteria = Criteria.builder()
             .setTypes(Image.class, Classifications.class)
@@ -51,12 +51,12 @@ public class ScreenGuesser {
             while (active) {
                 Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
                 BufferedImage capture = new Robot().createScreenCapture(screenRect);
-                java.awt.Image captureImg = capture.getScaledInstance(224, 244, java.awt.Image.SCALE_FAST);
+                java.awt.Image captureImg = capture.getScaledInstance(224, 224, java.awt.Image.SCALE_FAST);
 
-                label.setIcon(new ImageIcon(ImageConverter.convertToBufferedImage(captureImg)));
-                frame.invalidate();
+//                label.setIcon(new ImageIcon(ImageConverter.convertToBufferedImage(captureImg)));
+//                frame.invalidate();
 
-                Image image = ImageFactory.getInstance().fromImage(capture);
+                Image image = ImageFactory.getInstance().fromImage(ImageConverter.convertToBufferedImage(captureImg));
 
                 Classifications result = predictor.predict(image);
                 screen = result.best().getClassName();
