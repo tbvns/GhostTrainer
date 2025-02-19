@@ -31,19 +31,4 @@ public class Skins {
 
         noteFont = generator.generateFont(parameter);
     }
-
-    public static Label.LabelStyle labelStyle = new Label.LabelStyle(labelFont, textColor);
-    //public static TextField.TextFieldStyle textAreaStyle = new TextField.TextFieldStyle(labelFont, textColor, )
-
-    public static TextButton.TextButtonStyle textButtonStyle;
-    static {
-        textButtonStyle = new TextButton.TextButtonStyle();
-        NinePatch patch1 = new NinePatch(new Texture("UI/button1-9p.png"){{
-
-        }}, 6, 6, 6, 6);
-        NinePatch patch2 = new NinePatch(new Texture("UI/button2-9p.png"), 6, 6, 6, 6);
-        textButtonStyle.font = new BitmapFont();
-        textButtonStyle.over = new NinePatchDrawable(patch1);
-        textButtonStyle.up = new NinePatchDrawable(patch2);
-    }
 }
