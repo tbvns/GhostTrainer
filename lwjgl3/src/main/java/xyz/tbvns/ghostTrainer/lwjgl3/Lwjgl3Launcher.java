@@ -37,14 +37,12 @@ public class Lwjgl3Launcher {
             public void created(Lwjgl3Window window) {
                 super.created(window);
                 Lwjgl3Launcher.window = window;
-                new Thread(new UpdateThread()).start();
                 GLFW.glfwSetWindowAttrib(window.getWindowHandle(), GLFW.GLFW_FLOATING, GLFW.GLFW_TRUE);
                 GLFW.glfwSetWindowAttrib(window.getWindowHandle(), GLFW.GLFW_MOUSE_PASSTHROUGH, GLFW.GLFW_TRUE);
             }
 
             @Override
             public boolean closeRequested() {
-                UpdateThread.close = true;
                 return true;
             }
         });
