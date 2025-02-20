@@ -8,6 +8,7 @@ import xyz.tbvns.ghostTrainer.Main;
 import xyz.tbvns.ghostTrainer.Ui.ErrorHandler;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -23,8 +24,8 @@ public class NativeMouseReader {
 
     public static void update(int x, int y, boolean left, boolean right) {
 //        System.out.println(x + "  " + y + "  " + left + "   " + right);
-        float fx = (x / fixFactor) * sensitivity;
-        float fy = (y / fixFactor) * sensitivity;
+        float fx = (x / fixFactor) * sensitivity / Toolkit.getDefaultToolkit().getScreenSize().width * 1920;
+        float fy = (y / fixFactor) * sensitivity / Toolkit.getDefaultToolkit().getScreenSize().height * 1080;
 
         Camera camera = AimeTrainerRenderer.getCamera();
 
