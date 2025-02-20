@@ -2,46 +2,37 @@
   <img height="200" width="547" src="https://github.com/tbvns/GhostTrainer/assets/69420062/f5d820bb-8116-46f0-b553-8712275567d0">
   <br/>
   <img src="https://discord.com/api/guilds/721746963938148494/widget.png?style=shield" alt="Discord Shield"/>  
-  <img src="https://github.com/tbvns/ghosttrainer/actions/workflows/gradle-publish.yml/badge.svg" alt="Build badge"/>  
-  <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="Contribution badge"/>
+  <img src="https://github.com/tbvns/ghosttrainer/actions/workflows/gradle-publish.yml/badge.svg" alt="Build Status"/>  
+  <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="Contributions Welcome"/>
 </p>
 <br/>
 
-
-
-
-
-# Ghost trainer
-### Simple aim trainer that work in game !
+# Ghost Trainer
+### An In-Game Aim Trainer for Enhanced Practice
 
 > [!Warning]
-> Riot can ban users for using external app. <br/>
-> This app uses a window that's the size of your screen, this window is not clickable and is always on top of everything. <br/>
-> The mouse and keyboard inputs is acquired through the native Windows api, so nothing sketchy here. (vanguard should be fine with it)<br/>
-> This will not give you any advantages, and should be OK with riot's policy. <br/>
-> [Tweet](https://x.com/VALORANT/status/1539728676815642624) | [Article](https://www.riotgames.com/en/DevRel/valorant-api-launch?linkId=100000132045457)
+> **Important Notice:**  
+> Riot Games may ban users for utilizing external applications.  
+> Ghost Trainer operates by creating a non-clickable, always-on-top window that matches your screen size.  
+> Inputs are captured via the native Windows API, ensuring compatibility with systems running Vanguard.  
+> This application is designed for practice purposes only and does not provide any competitive advantage. It is intended to comply with Riot's policies.  
+> For further clarification, refer to this [Tweet](https://x.com/VALORANT/status/1539728676815642624) or [Article](https://www.riotgames.com/en/DevRel/valorant-api-launch?linkId=100000132045457).
 
-## Supported games:
-Ghost Trainer currently only support Valorant.
+## Supported Games
+Currently, Ghost Trainer exclusively supports **VALORANT**.
 
 > [!Note]
-> If people like this project, I may add more game to Ghost Trainer.
+> Additional game support may be added based on community interest and feedback.
 
-> [!Tip]
-> Other game may work, but won't be supported.
+## Key Bindings
+- **F2**: Open the trainer interface.
+- **F4**: Access the settings menu.
 
-## Key binds:
-- To open the trainer, click quickly two time on escape
-- to close it, click on time on escape
 > [!Note]
-> Custom keybinding are not implemented yet, if enough people care about this project, I may update it.
+> Custom key bindings are not currently supported. This feature may be implemented in future updates based on user demand.
 
-## Other thing:
-- You can change the app's settings in the launcher
-- you can close the app by closing the small window saying that the trainer is running
+## Download
+Download the latest release of Ghost Trainer [here](https://github.com/tbvns/GhostTrainer/releases/latest).
 
-## Download:
-You can download Ghost trainer [here](https://github.com/tbvns/GhostTrainer/releases/latest).
-
-## Communication:
-If you need help or want to request changes, [open an issue](https://github.com/tbvns/GhostTrainer/issues/new) or join the [discord](https://discord.gg/Vh8QAMq6BY).
+## Support & Feedback
+For assistance, feature requests, or bug reports, please [open an issue](https://github.com/tbvns/GhostTrainer/issues/new) or join our [Discord community](https://discord.gg/Vh8QAMq6BY).
