@@ -19,13 +19,13 @@ public class NativeMouseReader {
     public static native void hook();
     public static native void unhook();
 
-    public static float fixFactor = 14f;
+    public static float fixFactor = 14.3f;
     public static float sensitivity = 1f;
 
     public static void update(int x, int y, boolean left, boolean right) {
 //        System.out.println(x + "  " + y + "  " + left + "   " + right);
-        float fx = (x / fixFactor) * sensitivity / Toolkit.getDefaultToolkit().getScreenSize().width * 1920;
-        float fy = (y / fixFactor) * sensitivity / Toolkit.getDefaultToolkit().getScreenSize().height * 1080;
+        float fx = (x / fixFactor) * sensitivity / Toolkit.getDefaultToolkit().getScreenSize().width * 1920F;
+        float fy = (y / fixFactor) * sensitivity / Toolkit.getDefaultToolkit().getScreenSize().height * 1080F;
 
         Camera camera = AimeTrainerRenderer.getCamera();
 
