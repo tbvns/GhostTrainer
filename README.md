@@ -35,4 +35,4 @@ Currently, Ghost Trainer exclusively supports **VALORANT**.
 Download the latest release of Ghost Trainer [here](https://github.com/tbvns/GhostTrainer/releases/latest).
 
 ## Support & Feedback
-For assistance, feature requests, or bug reports, please [open an issue](https://github.com/tbvns/GhostTrainer/issues/new) or join our [Discord community](https://discord.gg/Vh8QAMq6BY).
+For assistance, feature requests, or bug reports, please [open an issue](https://github.com/tbvns/GhostTrainer/issues/new) or join our [Discord server](https://discord.gg/Vh8QAMq6BY).
