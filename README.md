@@ -1,3 +1,8 @@
+> [!CAUTION]
+> This project is curently not maintained. I don't play FPS anymore so this project will be a bit stale for the time being.
+>
+> I will update this eventually.
+
 <p align="center">
   <img height="200" width="547" src="https://github.com/tbvns/GhostTrainer/assets/69420062/f5d820bb-8116-46f0-b553-8712275567d0">
   <br/>
